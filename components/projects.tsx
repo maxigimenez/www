@@ -7,22 +7,22 @@ const Projects = () => {
         <div className="projects__container">
           <div>
             <h3>🧡 Skuap.com</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p>Skuap is a platform designed for leaders to create high performing teams.</p>
             <a href="https://skuap.com" title="Skuap">See more</a>
           </div>
           <div>
             <h3>💎 SheetAPI.co</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p>SheetAPI allows to transform Google Sheet's into RESTful API's.</p>
             <a href="https://sheetapi.co" title="SheetAPI">See more</a>
           </div>
           <div>
             <h3>📊 Updatefy.co</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p>Updatefy is no-code platform to embed Google Sheet's into any webpage.</p>
             <a href="https://updatefy.co" title="Updatefy">See more</a>
           </div>
           <div>
             <h3>🤑 CurrencyMenu.com</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p>Discover exchange rates directly from your menu bar.</p>
             <a href="https://currencymenu.com" title="CurrencyMenu">See more</a>
           </div>
         </div>
