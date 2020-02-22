@@ -2,25 +2,25 @@ const Footer = () => {
   return (
     <>
       <div className="footer">
-        <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter">
+        <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter" target="_blank">
           <i className="fa fa-twitter"></i>
         </a>
-        <a href="mailto:gimenez.maxi@gmail.com" title="Send me an email!">
+        <a href="mailto:gimenez.maxi@gmail.com" title="Send me an email!" target="_blank">
           <i className="fa fa-at"></i>
         </a>
-        <a href="https://github.com/maxigimenez" title="Check my Github profile">
+        <a href="https://github.com/maxigimenez" title="Check my Github profile" target="_blank">
           <i className="fa fa-github"></i>
         </a>
-        <a href="https://gitlab.com/maxigimenez" title="Check my GitLab profile">
+        <a href="https://gitlab.com/maxigimenez" title="Check my GitLab profile" target="_blank">
           <i className="fa fa-gitlab"></i>
         </a>
-        <a href="https://angel.co/maxigimenez" title="Check my Angel List profile">
+        <a href="https://angel.co/maxigimenez" title="Check my Angel List profile" target="_blank">
           <i className="fa fa-angellist"></i>
         </a>
-        <a href="https://www.producthunt.com/@gmaxi_" title="Check my Product Hunt profile">
+        <a href="https://www.producthunt.com/@gmaxi_" title="Check my Product Hunt profile" target="_blank">
           <i className="fa fa-product-hunt"></i>
         </a>
-        <a href="https://www.linkedin.com/in/maxigimenez/" title="Check my LinkedIn profile">
+        <a href="https://www.linkedin.com/in/maxigimenez/" title="Check my LinkedIn profile" target="_blank">
           <i className="fa fa-linkedin"></i>
         </a>
       </div>
