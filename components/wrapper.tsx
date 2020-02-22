@@ -12,6 +12,7 @@ const Wrapper = props => {
     </div>
     <style jsx global>{`
       body {
+        margin: 0px;
         padding: 0px;
         font-family: Open Sans, sans-serif;
         color: rgba(0,0,0,.74);
@@ -30,7 +31,7 @@ const Wrapper = props => {
         font-weight: 400;
       }
       h1 {
-        font-size: 24px;
+        font-size: 28px;
       }
       h2 {
         font-size: 22px;
