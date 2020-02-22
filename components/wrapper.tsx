@@ -27,7 +27,7 @@ const Wrapper = props => {
         text-decoration: underline;
         text-decoration-style: wavy;
       }
-      h1, h2, h3 {
+      h1, h2, h3, h4 {
         font-weight: 400;
       }
       h1 {
