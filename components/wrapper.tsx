@@ -7,9 +7,9 @@ const Wrapper = props => {
       <meta name="description" content="Hi! I'm Maxi, a full stack engineer from Argentina, feel free to reach me out!" />
       <meta name="keywords" content="full stack, engineer, front end, developer, personal site, blog" />
       <meta name="robots" content="index, nofollow" />
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
-      <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/joypixels/239/large-green-square_1f7e9.png" />
+      <link rel="icon" href="favicon.png" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet" />
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?display=swap" rel="stylesheet" />
     </Head>
@@ -17,6 +17,10 @@ const Wrapper = props => {
       {props.children}
     </div>
     <style jsx global>{`
+      :root {
+        --green: #21bf73;
+      }
+
       body {
         margin: 0px;
         padding: 0px;
@@ -29,7 +33,7 @@ const Wrapper = props => {
         margin: 5px 0;
       }
       a {
-        color: #21bf73;
+        color: var(--green);
         text-decoration: underline;
         text-decoration-style: wavy;
       }
@@ -48,7 +52,7 @@ const Wrapper = props => {
         content: ' ';
         width: 10px;
         height: 4px;
-        background-color: #21bf73;
+        background-color: var(--green);
         position: absolute;
         bottom: 0;
         left: 0;

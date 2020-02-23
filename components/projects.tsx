@@ -30,7 +30,7 @@ const Projects = () => {
 
       <style jsx>{`
       .projects {
-        margin-top: 80px;
+        margin-top: 60px;
       }
       .projects__container {
         display: flex;

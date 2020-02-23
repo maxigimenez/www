@@ -12,7 +12,7 @@ const OSProjects = () => {
 
           <div className="open-source__project">
             <h3>Base React App</h3>
-            <p>Layer on top of createReactApp adding most common libraries such as StyledComponents, React-Router, Jest and more.</p>
+            <p>Layer on top of <a href="https://github.com/facebook/create-react-app" title="Create React App" target="_blank">createReactApp</a> to include my most used libraries such as StyledComponents, React-Router, Jest and more. I mainly use this project as a skeleton of my side-projects for a quick start.</p>
             <a href="https://github.com/maxigimenez/base-react-app" title="base-react-app" target="_blank">See more</a>
           </div>
 

@@ -5,6 +5,9 @@ const Footer = () => {
         <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter" target="_blank">
           <i className="fa fa-twitter"></i>
         </a>
+        <a href="https://instagram.com/gmaxi_" title="Follow me on Instagram" target="_blank">
+          <i className="fa fa-instagram"></i>
+        </a>
         <a href="mailto:gimenez.maxi@gmail.com" title="Send me an email!" target="_blank">
           <i className="fa fa-at"></i>
         </a>
@@ -37,7 +40,7 @@ const Footer = () => {
         margin: 0 10px;
       }
       .footer a:hover {
-        color: #21bf73;
+        color: var(--green);
       }
       `}</style>
     </>
