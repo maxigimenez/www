@@ -35,7 +35,7 @@ const Wrapper = props => {
       a {
         color: var(--green);
         text-decoration: underline;
-        text-decoration-style: wavy;
+        text-decoration-style: dotted;
       }
       h1, h2, h3 {
         font-weight: 400;
