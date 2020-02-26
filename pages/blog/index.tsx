@@ -1,27 +1,15 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
-import Post from '../../components/post';
 import { ContentFulService } from '../../core';
+import Post from '../../components/post';
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
 
-const Blog = () => {
-  const contentFulService = new ContentFulService();
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    async function getPosts() {
-      const posts = await contentFulService.getPosts();
-      setPosts(posts);
-    }
-    getPosts();
-  }, [ContentFulService]);
-
+const Blog = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>Next.js + Contentful</title>
+        <title>maxi gimenez - full stack engineer</title>
       </Head>
       <Wrapper>
         {posts.length > 0
@@ -40,6 +28,14 @@ const Blog = () => {
       </Wrapper>
     </>
   )
+}
+
+Blog.getInitialProps = async () => {
+  const contentFulService = new ContentFulService();
+  const posts = await contentFulService.getPosts();
+  return {
+    posts
+  };
 }
 
 export default Blog

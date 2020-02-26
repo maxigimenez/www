@@ -1,34 +1,16 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
 
 import { ContentFulService } from '../../core';
-
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
 
-const Post = () => {
-  const contentFulService = new ContentFulService();
-  const [post, setPost] = useState();
-  const router = useRouter();
-
-  useEffect(() => {
-    const getPost = async () => {
-      if (!router.query.id) {
-        return;
-      }
-      const post = await contentFulService.getPostBySlug(router.query.id as string);
-      setPost(post);
-    };
-    getPost();
-  }, [ContentFulService, router]);
-
-  if (!post) {
-    return <></>
-  }
-
+const Post = ({ post }) => {
   return (
     <>
+      <Head>
+        <title>{post.title} - maxi gimenez - full stack engineer</title>
+      </Head>
       <div className="hero" style={{ backgroundImage: `url(${post.image})` }}></div>
       <Wrapper>
         <h1>{post.title}</h1>
@@ -47,6 +29,14 @@ const Post = () => {
       `}</style>
     </>
   )
+}
+
+Post.getInitialProps = async context => {
+  const contentFulService = new ContentFulService();
+  const post = await contentFulService.getPostBySlug(context.query.id);
+  return {
+    post
+  };
 }
 
 export default Post;
