@@ -13,16 +13,10 @@ const Bio = () => {
           <span>🐶 Pet lover</span>
         </div>
 
-        <p>I'm a passionate developer with 9+ years of experience working on tech companies.</p>
-        <p>Always seeking new challenges to learn as much as possible in the process.</p>
-        <p>Enjoy working on agile teams with clear goals and direction.</p>
+        <p>I'm a passionate developer with 10+ years of experience, who enjoys work with agile teams, where the main fuel is to create amazing and high-performance applications while having fun.</p>
+        <p>I believe that anyone can learn and teach at the same time, that's why I love to share knowledge and learn as much as possible from my co-workers.</p>
 
-        <div className="working">
-          <p>Currently, I'm at <a href="https://ganintegrity.com" title="GAN Integrity" target="_blank">GAN Integrity</a> as Senior Front-end engineer in the 🇩🇰 Copenhagen offices.</p>
-          <p>My job is to develop high performing code using the latest technologies aiming to have it fully covered (TDD & E2E) for the SaaS product.</p>
-        </div>
-
-        <p className="reach-out">If you want to reach out I'm on <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter" target="_blank">Twitter</a> or <a href="https://github.com/maxigimenez" title="Check my Github profile" target="_blank">Github</a>.</p>
+        <p className="reach-out">💬Wanna talk? Reach me out on <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter" target="_blank">Twitter</a>!</p>
       </div>
 
       <style jsx>{`

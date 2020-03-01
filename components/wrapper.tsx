@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const Wrapper = props => {
+const Wrapper = ({ children }) => {
   return (
     <>
     <Head>
@@ -14,18 +14,19 @@ const Wrapper = props => {
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?display=swap" rel="stylesheet" />
     </Head>
     <div className="wrapper">
-      {props.children}
+      {children}
     </div>
     <style jsx global>{`
       :root {
         --green: #21bf73;
+        --grey: rgba(0,0,0,.74);
       }
 
       body {
         margin: 0px;
         padding: 0px;
         font-family: Open Sans, sans-serif;
-        color: rgba(0,0,0,.74);
+        color: var(--grey);
         font-weight: 400;
         font-size: 15px;
       }
@@ -33,9 +34,12 @@ const Wrapper = props => {
         margin: 5px 0;
       }
       a {
-        color: var(--green);
+        color: var(--grey);
         text-decoration: underline;
         text-decoration-style: dotted;
+      }
+      a:hover {
+        color: var(--green);
       }
       h1, h2, h3 {
         font-weight: 400;

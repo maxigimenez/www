@@ -3,7 +3,6 @@ import Wrapper from '../components/wrapper';
 
 import Bio from '../components/bio';
 import Projects from '../components/projects';
-import OSProjects from '../components/os-projects';
 import Footer from '../components/footer';
 
 const Home = () => {
@@ -16,7 +15,6 @@ const Home = () => {
       <Wrapper>
         <Bio />
         <Projects />
-        <OSProjects />
         <Footer />
       </Wrapper>
     </>

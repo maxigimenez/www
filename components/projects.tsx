@@ -8,22 +8,22 @@ const Projects = () => {
           <div>
             <h3>🧡 Skuap.com</h3>
             <p>Skuap is a platform designed for leaders to create high performing teams.</p>
-            <a href="https://skuap.com" title="Skuap" target="_blank">See more</a>
+            <a href="https://skuap.com" title="Skuap" target="_blank">Check project</a>
           </div>
           <div>
             <h3>💎 SheetAPI.co</h3>
             <p>SheetAPI allows to transform Google Sheet's into RESTful API's.</p>
-            <a href="https://sheetapi.co" title="SheetAPI" target="_blank">See more</a>
+            <a href="https://sheetapi.co" title="SheetAPI" target="_blank">Check project</a>
           </div>
           <div>
             <h3>📊 Updatefy.co</h3>
             <p>Updatefy is no-code platform to embed Google Sheet's into any webpage.</p>
-            <a href="https://updatefy.co" title="Updatefy" target="_blank">See more</a>
+            <a href="https://updatefy.co" title="Updatefy" target="_blank">Check project</a>
           </div>
           <div>
             <h3>🤑 CurrencyMenu.com</h3>
             <p>Discover exchange rates directly from your menu bar.</p>
-            <a href="https://currencymenu.com" title="CurrencyMenu" target="_blank">See more</a>
+            <a href="https://currencymenu.com" title="CurrencyMenu" target="_blank">Check project</a>
           </div>
         </div>
       </div>
