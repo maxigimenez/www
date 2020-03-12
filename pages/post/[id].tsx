@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 
 import { ContentFulService } from '../../core';
@@ -20,6 +21,9 @@ const Post = ({ title, image, body, introBody }) => {
       </Head>
       <div className="hero" style={{ backgroundImage: `url(${image})` }}></div>
       <Wrapper>
+        <Link href="/">
+          <a><i className="fa fa-long-arrow-left"></i> Go back</a>
+        </Link>
         <h1>{title}</h1>
         <ReactMarkdown source={body} renderers={{ code: CodeBlock }} />
         <Footer />
