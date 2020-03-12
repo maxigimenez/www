@@ -9,7 +9,7 @@ const Wrapper = ({ children }) => {
       <meta name="robots" content="index, nofollow" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
-      <link rel="icon" href="favicon.png" />
+      <link rel="icon" href="/favicon.png" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet" />
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?display=swap" rel="stylesheet" />
     </Head>
