@@ -42,6 +42,7 @@ const Projects = () => {
       }
       .projects__container p {
         font-size: 14px;
+        margin: 10px 0;
       }
       .projects__container div:nth-child(odd) {
         margin-right: 4%;

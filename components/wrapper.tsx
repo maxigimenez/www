@@ -9,7 +9,7 @@ const Wrapper = ({ children }) => {
       <meta name="robots" content="index, nofollow" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
-      <link rel="icon" href="favicon.png" />
+      <link rel="icon" href="/favicon.png" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet" />
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?display=swap" rel="stylesheet" />
     </Head>
@@ -31,7 +31,7 @@ const Wrapper = ({ children }) => {
         font-size: 15px;
       }
       p {
-        margin: 5px 0;
+        margin: 20px 0;
       }
       a {
         color: var(--grey);
@@ -41,11 +41,11 @@ const Wrapper = ({ children }) => {
       a:hover {
         color: var(--green);
       }
-      h1, h2, h3 {
+      h1, h2, h3, h4 {
         font-weight: 400;
       }
       h1 {
-        font-size: 24px;
+        font-size: 28px;
       }
       h2 {
         font-size: 22px;
