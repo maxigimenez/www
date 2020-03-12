@@ -35,7 +35,8 @@ export class ContentFulService {
       return {
         title: post.fields.title,
         image: post.fields.image.fields.file.url,
-        body: post.fields.body
+        body: post.fields.body,
+        introBody: post.fields.introBody
       }
     } catch (e) {
       console.error(e);

@@ -6,11 +6,17 @@ import { CodeBlock } from '../../helpers';
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
 
-const Post = ({ title, image, body }) => {
+const Post = ({ title, image, body, introBody }) => {
   return (
     <>
       <Head>
         <title>{title} - maxi gimenez</title>
+        <meta name="description" content={introBody} />
+        <meta property="og:image" content={image} />
+        <meta name="twitter:title" content={`${title} - maxi gimenez`} />
+        <meta name="twitter:description" content={introBody} />
+        <meta name="twitter:image" content={image} />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className="hero" style={{ backgroundImage: `url(${image})` }}></div>
       <Wrapper>
