@@ -4,7 +4,7 @@ const SPACE = process.env.CONTENTFUL_SPACE_ID;
 const TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
 
 enum ContentType {
-  BLOG_POST = 'blogPost'
+  BLOG_POST = 'post'
 }
 
 export class ContentFulService {
@@ -34,8 +34,8 @@ export class ContentFulService {
 
       return {
         title: post.fields.title,
-        body: post.fields.body,
-        image: post.fields.heroImage.fields.file.url
+        image: post.fields.image.fields.file.url,
+        body: post.fields.body
       }
     } catch (e) {
       console.error(e);

@@ -2,19 +2,20 @@ import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
 
 import { ContentFulService } from '../../core';
+import { CodeBlock } from '../../helpers';
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
 
-const Post = ({ post }) => {
+const Post = ({ title, image, body }) => {
   return (
     <>
       <Head>
-        <title>{post.title} - maxi gimenez - full stack engineer</title>
+        <title>{title} - maxi gimenez</title>
       </Head>
-      <div className="hero" style={{ backgroundImage: `url(${post.image})` }}></div>
+      <div className="hero" style={{ backgroundImage: `url(${image})` }}></div>
       <Wrapper>
-        <h1>{post.title}</h1>
-        <ReactMarkdown source={post.body} />
+        <h1>{title}</h1>
+        <ReactMarkdown source={body} renderers={{ code: CodeBlock }} />
         <Footer />
       </Wrapper>
       <style jsx>{`
@@ -34,9 +35,7 @@ const Post = ({ post }) => {
 Post.getInitialProps = async context => {
   const contentFulService = new ContentFulService();
   const post = await contentFulService.getPostBySlug(context.query.id);
-  return {
-    post
-  };
+  return { ...post };
 }
 
 export default Post;
