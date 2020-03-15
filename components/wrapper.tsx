@@ -32,6 +32,7 @@ const Wrapper = ({ children }) => {
       }
       p {
         margin: 20px 0;
+        font-size: 14px;
       }
       a {
         color: var(--grey);

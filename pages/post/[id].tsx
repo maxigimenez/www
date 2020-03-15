@@ -6,8 +6,13 @@ import { ContentFulService } from '../../core';
 import { CodeBlock } from '../../helpers';
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
+import Error404 from '../../components/error-404';
 
-const Post = ({ title, image, body, introBody }) => {
+const Post = ({ title, image, body, introBody, error, imageAlt }) => {
+  if (error) {
+    return <Error404 />;
+  }
+
   return (
     <>
       <Head>
@@ -19,7 +24,7 @@ const Post = ({ title, image, body, introBody }) => {
         <meta name="twitter:image" content={image} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <div className="hero" style={{ backgroundImage: `url(${image})` }}></div>
+      <img src={image} className="hero" alt={imageAlt} />
       <Wrapper>
         <Link href="/">
           <a><i className="fa fa-long-arrow-left"></i> Go back</a>
@@ -33,8 +38,7 @@ const Post = ({ title, image, body, introBody }) => {
         display: flex;
         width: 100%;
         height: 300px;
-        background-size: cover;
-        background-position: center center;
+        object-fit: cover;
         margin-bottom: 40px;
       }
       `}</style>
@@ -44,8 +48,12 @@ const Post = ({ title, image, body, introBody }) => {
 
 Post.getInitialProps = async context => {
   const contentFulService = new ContentFulService();
-  const post = await contentFulService.getPostBySlug(context.query.id);
-  return { ...post };
+  try {
+    const post = await contentFulService.getPostBySlug(context.query.id);
+    return { ...post };
+  } catch (e) {
+    return { error: true };
+  }
 }
 
 export default Post;

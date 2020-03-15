@@ -4,8 +4,11 @@ import Wrapper from '../components/wrapper';
 import Bio from '../components/bio';
 import Projects from '../components/projects';
 import Footer from '../components/footer';
+import Posts from '../components/posts';
 
-const Home = () => {
+import { ContentFulService } from '../core';
+
+const Home = ({ posts }) => {
   return (
     <>
       <Head>
@@ -15,10 +18,19 @@ const Home = () => {
       <Wrapper>
         <Bio />
         <Projects />
+        <Posts posts={posts} />
         <Footer />
       </Wrapper>
     </>
   )
 }
+
+Home.getInitialProps = async () => {
+  const service = new ContentFulService();
+  const posts = await service.getPosts();
+  return {
+    posts
+  };
+};
 
 export default Home;

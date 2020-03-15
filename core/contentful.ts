@@ -1,4 +1,5 @@
 import { createClient } from 'contentful';
+import { Post } from './models/post';
 
 const SPACE = process.env.CONTENTFUL_SPACE_ID;
 const TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
@@ -18,9 +19,18 @@ export class ContentFulService {
       const posts = await this._client.getEntries({
         'content_type': ContentType.BLOG_POST
       });
-      return posts.items;
+      return posts.items.map((post: any) => {
+        return new Post({
+          title: post.fields.title,
+          image: post.fields.image.fields.file.url,
+          body: post.fields.body,
+          introBody: post.fields.introBody,
+          imageAlt: post.fields.image.fields.description,
+          slug: post.fields.slug
+        });
+      });
     } catch (e) {
-      console.error(e);
+      throw new Error(e);
     }
   }
 
@@ -32,14 +42,16 @@ export class ContentFulService {
       });
       const post = posts.items[0];
 
-      return {
+      return new Post({
         title: post.fields.title,
         image: post.fields.image.fields.file.url,
         body: post.fields.body,
-        introBody: post.fields.introBody
-      }
+        introBody: post.fields.introBody,
+        imageAlt: post.fields.image.fields.description,
+        slug: post.fields.slug
+      })
     } catch (e) {
-      console.error(e);
+      throw new Error(e);
     }
   }
 }
