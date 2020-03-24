@@ -6,6 +6,12 @@ const Projects = () => {
 
         <div className="projects__container">
           <div>
+            <h3>🤓 7reads</h3>
+            <p>Chrome extension to save up to 7 articles to read later.</p>
+            <span className="tag--wip">Work in progress</span>
+            {/* <a href="https://skuap.com" title="Skuap" target="_blank">Check project</a> */}
+          </div>
+          <div>
             <h3>🧡 Skuap.com</h3>
             <p>Skuap is a platform designed for leaders to create high performing teams.</p>
             <a href="https://skuap.com" title="Skuap" target="_blank">Check project</a>
@@ -46,6 +52,12 @@ const Projects = () => {
       }
       .projects__container div:nth-child(odd) {
         margin-right: 4%;
+      }
+      .tag--wip {
+        background-color: #fddb3a;
+        border-radius: 4px;
+        padding: 0 8px;
+        font-size: 12px;
       }
       @media only screen and (max-width: 600px) {
         .projects__container div {
