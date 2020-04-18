@@ -1,8 +1,11 @@
 import Link from 'next/link';
-// import ReactMarkdown from 'react-markdown';
 import { Post } from '../core';
 
 const Posts = ({ posts }) => {
+  if (!posts.length) {
+    return <></>;
+  }
+
   return (
     <>
       <div className="posts">
@@ -13,7 +16,6 @@ const Posts = ({ posts }) => {
             <Link href={`/post/${post.slug}`}>
               <h3>{post.title}</h3>
             </Link>
-            {/* <ReactMarkdown source={post.introBody} /> */}
           </div>
         })}
       </div>

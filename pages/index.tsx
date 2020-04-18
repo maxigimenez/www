@@ -12,7 +12,7 @@ const Home = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>maxi gimenez - full stack engineer</title>
+        <title>maxi gimenez - developer</title>
       </Head>
 
       <Wrapper>

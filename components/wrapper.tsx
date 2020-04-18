@@ -4,7 +4,7 @@ const Wrapper = ({ children }) => {
   return (
     <>
     <Head>
-      <meta name="description" content="Hi! I'm Maxi, a full stack engineer from Argentina, feel free to reach me out!" />
+      <meta name="description" content="Hi! I'm Maxi, a developer from Argentina, feel free to reach me out!" />
       <meta name="keywords" content="full stack, engineer, front end, developer, personal site, blog" />
       <meta name="robots" content="index, nofollow" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />

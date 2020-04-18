@@ -6,10 +6,9 @@ const Projects = () => {
 
         <div className="projects__container">
           <div>
-            <h3>🤓 7reads</h3>
-            <p>Chrome extension to save up to 7 articles to read later.</p>
-            <span className="tag--wip">Work in progress</span>
-            {/* <a href="https://skuap.com" title="Skuap" target="_blank">Check project</a> */}
+            <h3>📰 7Reads</h3>
+            <p>7Reads is a minimal mindful reading list for Google Chrome.</p>
+            <a href="https://7reads.now.sh/" title="7Reads" target="_blank">Check project</a>
           </div>
           <div>
             <h3>🧡 Skuap.com</h3>
