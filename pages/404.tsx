@@ -1,7 +1,7 @@
 import { NotFound } from '../components/not-found';
 
-const Error = () => (
+const Custom404 = () => (
   <NotFound />
-)
+);
 
-export default Error;
+export default Custom404;

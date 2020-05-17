@@ -25,11 +25,13 @@ const Home = ({ posts }) => {
   )
 }
 
-Home.getInitialProps = async () => {
+export const getStaticProps = async () => {
   const service = new ContentFulService();
   const posts = await service.getPosts();
   return {
-    posts
+    props: {
+      posts
+    }
   };
 };
 
