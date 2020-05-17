@@ -6,11 +6,11 @@ import { ContentFulService } from '../../core';
 import { CodeBlock } from '../../helpers';
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
-import Error404 from '../../components/error-404';
+import { NotFound } from '../../components/not-found';
 
 const Post = ({ title, image, body, introBody, error, imageAlt }) => {
   if (error) {
-    return <Error404 />;
+    return <NotFound />;
   }
 
   return (

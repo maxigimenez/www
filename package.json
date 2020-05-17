@@ -12,14 +12,16 @@
   "author": "Maxi Gimenez <gimenez.maxi@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^13.7.4",
-    "@types/react": "^16.9.21",
-    "contentful": "^7.13.1",
-    "next": "^9.3.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-markdown": "^4.3.1",
-    "react-syntax-highlighter": "^12.2.1",
-    "typescript": "^3.7.5"
+    "contentful": "7.13.1",
+    "next": "9.4.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-markdown": "4.3.1",
+    "react-syntax-highlighter": "12.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "13.7.4",
+    "@types/react": "16.9.21",
+    "typescript": "3.7.5"
   }
 }
