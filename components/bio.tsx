@@ -1,56 +1,22 @@
-const Bio = () => {
-  return (
-    <>
-      <div className="bio">
-        <img src="/me.jpg" alt="Me in NYC early 2020" width="100" />
-        <h1>Hi!, I'm <strong>Maxi</strong> 🇦🇷</h1>
+const Bio = () => (
+  <div className="mt-12">
+    <img className="rounded-full h-24 w-24 object-cover" src="/me.jpg" alt="Me in NYC early 2020" />
 
-        <div className="tags">
-          <span>👨‍💻 Developer</span>
-          <span>✈️ Traveler</span>
-          <span>🚀 Maker</span>
-          <span>👨‍🍳 Chef Enthusiast</span>
-          <span>🐶 Pet lover</span>
-        </div>
+    <h1 className="my-5 text-3xl">Hi!, I'm <strong>Maxi</strong> 🇦🇷</h1>
 
-        <p>I'm a passionate developer with 10+ years of experience, who enjoys work with agile teams, where the main fuel is to create amazing and high-performance applications while having fun.</p>
-        <p>I believe that anyone can learn and teach at the same time, that's why I love to share knowledge and learn as much as possible from my co-workers.</p>
+    <div>
+      <span className="rounded-md bg-gray-200 mr-2 px-2 py-1">👨‍💻 Developer</span>
+      <span className="rounded-md bg-gray-200 mr-2 px-2 py-1">✈️ Traveler</span>
+      <span className="rounded-md bg-gray-200 mr-2 px-2 py-1">🚀 Maker</span>
+      <span className="rounded-md bg-gray-200 mr-2 px-2 py-1">👨‍🍳 Chef Enthusiast</span>
+      <span className="rounded-md bg-gray-200 mr-2 px-2 py-1">🐶 Pet lover</span>
+    </div>
 
-        <p className="reach-out">💬Wanna talk? Reach me out on <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter" target="_blank">Twitter</a>!</p>
-      </div>
+    <p className="my-5">+10 years experienced, dynamic, and quality-oriented developer focused on creating re-usable and high-performance applications driven by client satisfaction & smooth developers experience.</p>
+    <p className="my-5">Highly skilled in the end-to-end SDLC, effectively working on sustainable code thorough planification and responsible execution, crafting components libraries, and working ahead of future changes in order to save time and money.</p>
 
-      <style jsx>{`
-        img {
-          border-radius: 50%;
-          height: 100px;
-          object-fit: cover;
-        }
-        .bio {
-          margin-top: 50px;
-        }
-        .reach-out {
-          margin-top: 20px;
-        }
-        .tags {
-          display: flex;
-          margin: 0px 0 20px;
-        }
-        h1 {
-          margin-bottom: 10px;
-        }
-        .tags span {
-          background-color: rgba(0,0,0,.06);
-          border-radius: 4px;
-          padding: 0 8px;
-          font-size: 13px;
-          margin-right: 5px;
-        }
-        .working {
-          margin-top: 20px;
-        }
-      `}</style>
-    </>
-  )
-}
+    <p className="my-5 text-gray-700">💬 Wanna talk? Reach me out on <a href="https://twitter.com/gmaxi_" title="Reach me out on twitter" target="_blank" className="underline">Twitter</a>!</p>
+  </div>
+);
 
 export default Bio;

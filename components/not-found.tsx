@@ -1,19 +1,16 @@
 import Head from 'next/head';
-import Wrapper from './wrapper';
 
 export const NotFound = () => (
   <>
     <Head>
       <title>maxi gimenez - full stack engineer</title>
     </Head>
-    <Wrapper>
-      <div className="container">
-        <h1>404</h1>
-        <div className="text">
-          <h2>The page you requested was not found.</h2>
-        </div>
+    <div className="container">
+      <h1>404</h1>
+      <div className="text">
+        <h2>The page you requested was not found.</h2>
       </div>
-    </Wrapper>
+    </div>
     <style jsx>{`
     .container {
       height: 100vh;
