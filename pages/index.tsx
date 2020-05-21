@@ -18,21 +18,21 @@ const Home = ({ posts }) => {
       <Wrapper>
         <Bio />
         <Projects />
-        <Posts posts={posts} />
+        {/* <Posts posts={posts} /> */}
         <Footer />
       </Wrapper>
     </>
   )
 }
 
-export const getStaticProps = async () => {
-  const service = new ContentFulService();
-  const posts = await service.getPosts();
-  return {
-    props: {
-      posts
-    }
-  };
-};
+// export const getStaticProps = async () => {
+//   const service = new ContentFulService();
+//   const posts = await service.getPosts();
+//   return {
+//     props: {
+//       posts
+//     }
+//   };
+// };
 
 export default Home;

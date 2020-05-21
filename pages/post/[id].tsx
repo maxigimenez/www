@@ -4,33 +4,31 @@ import ReactMarkdown from 'react-markdown';
 
 import { ContentFulService } from '../../core';
 import { CodeBlock } from '../../helpers';
+
 import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
-import { NotFound } from '../../components/not-found';
 
-const Post = ({ title, image, body, introBody, error, imageAlt }) => {
-  if (error) {
-    return <NotFound />;
-  }
-
+const Post = ({ post }) => {
   return (
     <>
       <Head>
-        <title>{title} - maxi gimenez</title>
-        <meta name="description" content={introBody} />
-        <meta property="og:image" content={image} />
-        <meta name="twitter:title" content={`${title} - maxi gimenez`} />
-        <meta name="twitter:description" content={introBody} />
-        <meta name="twitter:image" content={image} />
+        <title>{post.title} - maxi gimenez</title>
+        <meta name="description" content={post.introBody} />
+        <meta property="og:image" content={post.image} />
+        <meta name="twitter:title" content={`${post.title} - maxi gimenez`} />
+        <meta name="twitter:description" content={post.introBody} />
+        <meta name="twitter:image" content={post.image} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <img src={image} className="hero" alt={imageAlt} />
+      <img src={post.image} className="hero" alt={post.imageAlt} />
       <Wrapper>
-        <Link href="/">
+        <Link href="/" as="/">
           <a><i className="fa fa-long-arrow-left"></i> Go back</a>
         </Link>
-        <h1>{title}</h1>
-        <ReactMarkdown source={body} renderers={{ code: CodeBlock }} />
+        <h1>{post.title}</h1>
+        <article className="article-post">
+          <ReactMarkdown source={post.body} renderers={{ code: CodeBlock }} />
+        </article>
         <Footer />
       </Wrapper>
       <style jsx>{`
@@ -46,13 +44,20 @@ const Post = ({ title, image, body, introBody, error, imageAlt }) => {
   )
 }
 
-Post.getInitialProps = async context => {
+export const getStaticPaths = async () => {
+  return {
+    paths: ['/post/moving-skuap-to-nextjs'],
+    fallback: false
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
   const contentFulService = new ContentFulService();
-  try {
-    const post = await contentFulService.getPostBySlug(context.query.id);
-    return { ...post };
-  } catch (e) {
-    return { error: true };
+  const post = await contentFulService.getPostBySlug(params.id);
+  return {
+    props: {
+      post
+    }
   }
 }
 
