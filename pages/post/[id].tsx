@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown';
 
 import { ContentFulService } from '../../core';
 import { CodeBlock } from '../../helpers';
-import Wrapper from '../../components/wrapper';
 import Footer from '../../components/footer';
 import { NotFound } from '../../components/not-found';
 
@@ -25,14 +24,12 @@ const Post = ({ title, image, body, introBody, error, imageAlt }) => {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <img src={image} className="hero" alt={imageAlt} />
-      <Wrapper>
-        <Link href="/">
-          <a><i className="fa fa-long-arrow-left"></i> Go back</a>
-        </Link>
-        <h1>{title}</h1>
-        <ReactMarkdown source={body} renderers={{ code: CodeBlock }} />
-        <Footer />
-      </Wrapper>
+      <Link href="/">
+        <a><i className="fa fa-long-arrow-left"></i> Go back</a>
+      </Link>
+      <h1>{title}</h1>
+      <ReactMarkdown source={body} renderers={{ code: CodeBlock }} />
+      <Footer />
       <style jsx>{`
       .hero {
         display: flex;
