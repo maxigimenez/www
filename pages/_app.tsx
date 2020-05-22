@@ -1,9 +1,3 @@
-import '../styles.scss';
-
-const CustomApp = ({ Component, pageProps }) => {
-  return <>
-    <Component {...pageProps} />
-  </>;
-};
-
-export default CustomApp;
+import '../styles/index.scss'
+const App = ({ Component, pageProps }) => (<Component {...pageProps} />)
+export default App;
