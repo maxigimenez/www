@@ -22,7 +22,7 @@ const Home = ({ posts }) => (
 
     <div className="container mx-auto max-w-screen-sm px-4 md:px-0">
       <Bio />
-      <Posts posts={posts} />
+      {!!posts.length && <Posts posts={posts} />}
       <Projects />
       <Footer />
     </div>
