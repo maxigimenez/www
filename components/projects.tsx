@@ -1,6 +1,9 @@
 const Projects = () => (
   <div className="my-12">
-    <h2 className="text-2xl mb-8">Side Projects</h2>
+    <h2 className="text-2xl mb-8">
+      <span className="w-2 h-1 bg-green-400 inline-block mr-1"></span>
+      Side Projects
+    </h2>
 
     <div className="grid md:grid-cols-2 row-gap-10 grid-cols-1 gap-6">
       <div>

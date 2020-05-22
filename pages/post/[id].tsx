@@ -4,52 +4,58 @@ import ReactMarkdown from 'react-markdown';
 
 import { ContentFulService } from '../../core';
 import { CodeBlock } from '../../helpers';
+
 import Footer from '../../components/footer';
-import { NotFound } from '../../components/not-found';
 
-const Post = ({ title, image, body, introBody, error, imageAlt }) => {
-  if (error) {
-    return <NotFound />;
-  }
+const Post = ({ post }) => (
+  <>
+    <Head>
+      <title>{post.title} - maxi gimenez</title>
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="language" content="English" />
+      <link rel="icon" href="/favicon.png" />
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?display=swap" rel="stylesheet" />
+      <meta name="description" content={post.introBody} />
+      <meta property="og:image" content={post.image} />
+      <meta name="twitter:title" content={`${post.title} - maxi gimenez`} />
+      <meta name="twitter:description" content={post.introBody} />
+      <meta name="twitter:image" content={post.image} />
+      <meta name="twitter:card" content="summary_large_image" />
+    </Head>
 
-  return (
-    <>
-      <Head>
-        <title>{title} - maxi gimenez</title>
-        <meta name="description" content={introBody} />
-        <meta property="og:image" content={image} />
-        <meta name="twitter:title" content={`${title} - maxi gimenez`} />
-        <meta name="twitter:description" content={introBody} />
-        <meta name="twitter:image" content={image} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-      <img src={image} className="hero" alt={imageAlt} />
-      <Link href="/">
-        <a><i className="fa fa-long-arrow-left"></i> Go back</a>
+    <div className="container mx-auto max-w-screen-sm px-4 md:px-0 mt-12">
+      <Link href="/" as="/">
+        <a className="text-sm"><i className="fa fa-long-arrow-left"></i> Go back</a>
       </Link>
-      <h1>{title}</h1>
-      <ReactMarkdown source={body} renderers={{ code: CodeBlock }} />
+
+      <h1 className="text-2xl mt-3">{post.title}</h1>
+      <div className="text-gray-600 text-sm">Published {post.createdAt}</div>
+
+      <article className="mb-10">
+        <ReactMarkdown source={post.body} renderers={{ code: CodeBlock }} />
+      </article>
+
       <Footer />
-      <style jsx>{`
-      .hero {
-        display: flex;
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        margin-bottom: 40px;
-      }
-      `}</style>
-    </>
-  )
+    </div>
+  </>
+)
+
+export const getStaticPaths = async () => {
+  const contentFulService = new ContentFulService();
+  const slugs = await contentFulService.getPostsSlugs();
+  return {
+    paths: slugs.map(slug => `/post/${slug}`),
+    fallback: false
+  }
 }
 
-Post.getInitialProps = async context => {
+export const getStaticProps = async ({ params }) => {
   const contentFulService = new ContentFulService();
-  try {
-    const post = await contentFulService.getPostBySlug(context.query.id);
-    return { ...post };
-  } catch (e) {
-    return { error: true };
+  const post = await contentFulService.getPostBySlug(params.id);
+  return {
+    props: {
+      post
+    }
   }
 }
 
