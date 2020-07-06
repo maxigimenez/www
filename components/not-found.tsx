@@ -3,7 +3,7 @@ import Head from 'next/head';
 export const NotFound = () => (
   <>
     <Head>
-      <title>maxi gimenez - full stack engineer</title>
+      <title>maxi gimenez - developer</title>
     </Head>
     <div className="container">
       <h1>404</h1>
