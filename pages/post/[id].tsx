@@ -23,7 +23,11 @@ const Post = ({ post }) => (
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
 
-    <div className="container mx-auto max-w-screen-sm px-4 md:px-0 mt-12">
+    {post.image && <div className="container mx-auto max-w-screen-lg">
+      <img src={post.image} className="h-64 w-full object-cover" />
+    </div>}
+
+    <div className="container mx-auto max-w-screen-sm px-4 md:px-0 mt-10">
       <Link href="/" as="/">
         <a className="text-sm"><i className="fa fa-long-arrow-left"></i> Go back</a>
       </Link>
