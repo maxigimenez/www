@@ -1,3 +1,6 @@
+import ReactMarkdown from 'react-markdown';
+import { renderToString } from 'react-dom/server';
+
 import { ContentFulService } from '../core';
 
 const Rss = () => <></>;
@@ -20,7 +23,7 @@ Rss.getInitialProps = async ({ res }) => {
           <link>https://maxigimenez.xyz/post/${post.slug}</link>
           <pubDate>${post.createdAt}</pubDate>
           <description>
-            <![CDATA[${post.body}]]>
+            <![CDATA[${renderToString(<ReactMarkdown source={post.body} />)}]]>
           </description>
         </item>`;
       }).join('')}
