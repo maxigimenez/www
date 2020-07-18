@@ -57,7 +57,7 @@ const generate = () => {
 
 const run = async () => {
   await getPosts();
-  await getInstagramPhotos();
+  // await getInstagramPhotos();
   generate();
 }
 
