@@ -42,5 +42,5 @@ jobs:
           git commit -m "chore: update readme - automated" -a
       - name: Push README.md
         uses: ad-m/github-push-action@master
-        env:
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
