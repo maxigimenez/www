@@ -8,7 +8,7 @@ on:
     - cron: '0 */3 * * *'
 
 jobs:
-  dependencies:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
