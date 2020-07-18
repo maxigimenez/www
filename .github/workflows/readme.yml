@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/cache@v1
         id: restore-dependencies
+        with:
+          path: '.'
+          key: ${{ github.sha }}
       - name: Generate README
         run: node scripts/generate-readme.js
         env:
