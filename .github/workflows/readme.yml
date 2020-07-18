@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - run: yarn install --frozen-lockfile --check-files
       - uses: actions/cache@v1
         id: cache-dependencies
@@ -23,6 +23,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     needs: dependencies
+
     steps:
       - uses: actions/cache@v1
         id: restore-dependencies
@@ -35,12 +36,7 @@ jobs:
           CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
           CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
           NODE_ENV: 'production'
-      - name: Commit README.md
-        run: |
-          git config --local user.email "gimenez.maxi@gmail.com"
-          git config --local user.name "Maxi Gimenez"
-          git commit -m "chore: update readme - automated" -a
-      - name: Push README.md
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push new README.md
+        uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
