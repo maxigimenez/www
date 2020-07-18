@@ -31,7 +31,7 @@ jobs:
           path: '.'
           key: ${{ github.sha }}
       - name: Generate README
-        run: node scripts/generate-readme.js
+        run: node ./scripts/generate-readme.js
         env:
           CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
           CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
