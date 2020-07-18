@@ -34,6 +34,7 @@ const getPosts = async () => {
 
 const getInstagramPhotos = async () => {
   try {
+    console.log('https://instagram.com/gmaxi_/?__a=1');
     const response = await fetch('https://instagram.com/gmaxi_/?__a=1');
     const json = await response.json();
     DATA.photos = json.graphql.user.edge_owner_to_timeline_media.edges.splice(0, 3).map(({node}) => ({
