@@ -10,4 +10,4 @@
     <li><a href="https:&#x2F;&#x2F;maxigimenez.xyz&#x2F;post&#x2F;every-startup-needs-component-library">Every startup needs a components library</a></li>
 </ul>
 
-<p>Last update: Sun Jul 19 2020 12:02:05 GMT+0000 (Coordinated Universal Time)</p>
+<p>Last update: Sun Jul 19 2020 15:01:44 GMT+0000 (Coordinated Universal Time)</p>
