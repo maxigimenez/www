@@ -1,20 +1,13 @@
-<h1>Hola 👋!, I'm <strong>Maxi</strong> from 🇦🇷 living on 🇩🇰</h1>
+<h1>Hola 👋!</h1>
 
-<p>
-  <span>👨‍💻 Developer</span> -
-  <span>✈️ Traveler</span> -
-  <span>🚀 Maker</span> -
-  <span>👨‍🍳 Chef Enthusiast</span> -
-  <span>🐶 Pet lover</span>
-</p>
+<p>I'm <strong>Maxi</strong> a front-end developer from 🇦🇷 living on 🇩🇰</p>
 
-## Posts
+<p>👨‍💻 Developer - ✈️ Traveler - 🚀 Maker - 👨‍🍳 Chef Enthusiast - 🐶 Pet lover</p>
+
+<h2>Blog</h2>
 
 <ul>
     <li><a href="https:&#x2F;&#x2F;maxigimenez.xyz&#x2F;post&#x2F;every-startup-needs-component-library">Every startup needs a components library</a></li>
 </ul>
 
-## Photos
-
-<p>
-</p>
+<p>Last update: Sun Jul 19 2020 12:02:05 GMT+0000 (Coordinated Universal Time)</p>
