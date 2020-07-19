@@ -9,7 +9,9 @@ const fetch = require('node-fetch');
 const TEMPLATE_FILE = path.join(__dirname, '../README.mustache');
 const OUTPUT_FILE = path.join(__dirname, '../README.md');
 
-const DATA = {};
+const DATA = {
+  updated: new Date()
+};
 
 const getPosts = async () => {
   const client = createClient({
@@ -32,19 +34,6 @@ const getPosts = async () => {
   }
 };
 
-const getInstagramPhotos = async () => {
-  try {
-    console.log('https://instagram.com/gmaxi_/?__a=1');
-    const response = await fetch('https://instagram.com/gmaxi_/?__a=1');
-    const json = await response.json();
-    DATA.photos = json.graphql.user.edge_owner_to_timeline_media.edges.splice(0, 3).map(({node}) => ({
-      url: node.display_url
-    }));
-  } catch (e) {
-    throw e;
-  }
-};
-
 const generate = () => {
   fs.readFile(TEMPLATE_FILE, (err, template) => {
     if (err) {
@@ -52,12 +41,11 @@ const generate = () => {
     }
     const output = Mustache.render(template.toString(), DATA);
     fs.writeFileSync(OUTPUT_FILE, output);
-  })
+  });
 }
 
 const run = async () => {
   await getPosts();
-  // await getInstagramPhotos();
   generate();
 }
 
