@@ -24,6 +24,8 @@ const Home = ({ posts }) => (
       <Bio />
       {!!posts.length && <Posts posts={posts} />}
       <Projects />
+      <Projects />
+      <Projects />
       <Footer />
     </div>
   </>
