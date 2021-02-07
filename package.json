@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "contentful": "7.13.1",
-    "next": "9.4.4",
+    "next": "10.0.6",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-markdown": "4.3.1",
@@ -21,16 +21,16 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@types/node": "13.7.4",
     "@types/react": "16.9.21",
+    "autoprefixer": "^9",
     "dotenv": "^8.2.0",
     "mustache": "^4.0.1",
     "node-fetch": "^2.6.1",
     "node-sass": "4.14.1",
-    "postcss-preset-env": "6.7.0",
-    "typescript": "3.7.5",
     "postcss": "^7",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9"
+    "postcss-preset-env": "6.7.0",
+    "typescript": "3.7.5"
   }
 }
