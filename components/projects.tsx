@@ -22,7 +22,7 @@ const Projects = () => (
         <a href="https://sheetapi.co" title="SheetAPI" target="_blank" className="underline">Check project</a>
       </div>
       <div>
-        <h3 className="text-xl mb-2">📊 Updatefy.co</h3>
+        <h3 className="text-xl mb-2">📊 Updatefy.co <span className="text-sm text-white	bg-red-600 rounded-md py-1 px-2 uppercase">Exit</span></h3>
         <p className="mb-1">Updatefy is no-code platform to embed Google Sheet's into any webpage.</p>
         <a href="https://updatefy.co" title="Updatefy" target="_blank" className="underline">Check project</a>
       </div>
