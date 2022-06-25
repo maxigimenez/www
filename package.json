@@ -27,7 +27,7 @@
     "autoprefixer": "^9",
     "dotenv": "^8.2.0",
     "mustache": "^4.0.1",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "node-sass": "4.14.1",
     "postcss": "^7",
     "postcss-preset-env": "6.7.0",
