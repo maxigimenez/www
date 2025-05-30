@@ -1,13 +1,75 @@
-<h1>Hola 👋!</h1>
+# Nuxt Minimal Starter
 
-<p>I'm <strong>Maxi</strong> a front-end developer from 🇦🇷 living on 🇩🇰</p>
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-<p>👨‍💻 Developer - ✈️ Traveler - 🚀 Maker - 👨‍🍳 Chef Enthusiast - 🐶 Pet lover</p>
+## Setup
 
-<h2>Blog</h2>
+Make sure to install dependencies:
 
-<ul>
-    <li><a href="https:&#x2F;&#x2F;maxigimenez.xyz&#x2F;post&#x2F;every-startup-needs-component-library">Every startup needs a components library</a></li>
-</ul>
+```bash
+# npm
+npm install
 
-<p>Last update: Mon Jul 20 2020 09:01:54 GMT+0000 (Coordinated Universal Time)</p>
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

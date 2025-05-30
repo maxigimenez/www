@@ -1,8 +1,6 @@
 module.exports = {
-  purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
+  content: [
+    './nuxt.config.ts',
+    './content/**/*.md'
+  ]
 }

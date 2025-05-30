@@ -1,36 +1,22 @@
 {
-  "name": "personal-site",
-  "version": "0.0.1",
-  "description": "Personal site using next.js & contentful",
-  "main": "",
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
-  "keywords": [],
-  "author": "Maxi Gimenez <gimenez.maxi@gmail.com>",
-  "license": "MIT",
   "dependencies": {
-    "contentful": "7.13.1",
-    "next": "10.0.6",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-markdown": "4.3.1",
-    "react-syntax-highlighter": "12.2.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "@nuxt/content": "3.5.1",
+    "@nuxt/icon": "1.13.0",
+    "@tailwindcss/vite": "4.1.8",
+    "nuxt": "3.17.4",
+    "tailwindcss": "4.1.8",
+    "vue": "3.5.15",
+    "vue-router": "4.5.1"
   },
-  "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "@types/node": "13.7.4",
-    "@types/react": "16.9.21",
-    "autoprefixer": "^9",
-    "dotenv": "^8.2.0",
-    "mustache": "^4.0.1",
-    "node-fetch": "^2.6.1",
-    "node-sass": "4.14.1",
-    "postcss": "^7",
-    "postcss-preset-env": "6.7.0",
-    "typescript": "3.7.5"
-  }
+  "packageManager": "pnpm@10.8.0+sha1.ae60ea225bbd6b1f51cd17e91b40431c8b12a052"
 }
