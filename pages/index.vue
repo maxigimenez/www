@@ -24,7 +24,7 @@ useSeoMeta({
         <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">✈️ Traveler</span>
         <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">🚀 Maker</span>
         <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">👨‍🍳 Chef Enthusiast</span>
-        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">🐶 Pet lover</span>
+        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">😻 Cat owner</span>
       </div>
 
       <p class="my-5">+10 years experienced, dynamic, and quality-oriented developer focused on creating re-usable and high-performance applications driven by client satisfaction & smooth developers experience.</p>
