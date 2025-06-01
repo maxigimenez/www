@@ -27,10 +27,10 @@ useSeoMeta({
         <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">😻 Cat owner</span>
       </div>
 
-      <p class="my-5">+10 years experienced, dynamic, and quality-oriented developer focused on creating re-usable and high-performance applications driven by client satisfaction & smooth developers experience.</p>
-      <p class="my-5">Highly skilled in the end-to-end SDLC, effectively working on sustainable code thorough planification and responsible execution, crafting components libraries, and working ahead of future changes in order to save time and money.</p>
+      <p class="my-5">Over +14 years of experience in agile, high-performing engineering teams. Started as a full-stack developer, later specializing in frontend technologies. For the past 4 years, I’ve led cross-functional teams, driving delivery, collaboration, and technical excellence across complex projects.</p>
+      <p class="my-5">I enjoy going wild camping, watching Formula 1, playing Magic: The Gathering, and spending time with my cat. I also love working on side projects that blend my engineering passion with personal interests. For example, I built a platform to analyze Formula 1 data and generate insightful charts, combining tech and sports in a fun, meaningful way.</p>
 
-      <p class="my-5 text-gray-700">💬 Wanna talk? Reach me out on <a href="https://twitter.com/gmaxi_" title="Reach me out on X" target="_blank" className="underline">X</a>!</p>
+      <p class="my-5 text-gray-700">💬 Wanna talk? You can reach me on <a href="https://twitter.com/gmaxi_" title="Reach me out on X" target="_blank" className="underline">X</a>!</p>
     </div>
 
     <div class="my-12">
@@ -64,24 +64,24 @@ useSeoMeta({
         </div>
         <div>
           <h3 class="text-xl mb-2">📰 7Reads</h3>
-          <p class="mb-1">7Reads is a minimal mindful reading list for Google Chrome.</p>
+          <p class="mb-1">7Reads is a simple and mindful reading list extension for Google Chrome.</p>
           <a href="https://7reads.now.sh/" title="7Reads" target="_blank" class="underline">Check project</a>
         </div>
         <div>
-          <h3 class="text-xl mb-2">🧡 Skuap.com <span class="text-sm text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
+          <h3 class="text-xl mb-2">🧡 Skuap.com <span class="text-xs text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
           <p class="mb-1">Skuap is a platform designed for leaders to create high performing teams.</p>
         </div>
         <div>
-          <h3 class="text-xl mb-2">💎 SheetAPI.co <span class="text-sm text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
-          <p class="mb-1">SheetAPI allows to transform Google Sheet's into RESTful API's.</p>
+          <h3 class="text-xl mb-2">💎 SheetAPI.co <span class="text-xs text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
+          <p class="mb-1">SheetAPI enables you to turn Google Sheets into RESTful APIs.</p>
         </div>
         <div>
-          <h3 class="text-xl mb-2">📊 Updatefy.co <span class="text-sm text-white	bg-red-600 rounded-md py-1 px-2 uppercase">Exit</span></h3>
-          <p class="mb-1">Updatefy is no-code platform to embed Google Sheet's into any webpage.</p>
+          <h3 class="text-xl mb-2">📊 Updatefy.co <span class="text-xs text-white	bg-red-600 rounded-md py-1 px-2 uppercase">Exit</span></h3>
+          <p class="mb-1">Updatefy is a no-code platform that lets you embed Google Sheets into any webpage.</p>
         </div>
         <div>
-          <h3 class="text-xl mb-2">🤑 CurrencyMenu.com <span class="text-sm text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
-          <p class="mb-1">Discover exchange rates directly from your menu bar.</p>
+          <h3 class="text-xl mb-2">🤑 CurrencyMenu.com <span class="text-xs text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
+          <p class="mb-1">View live exchange rates right from your menu bar.</p>
         </div>
       </div>
     </div>
