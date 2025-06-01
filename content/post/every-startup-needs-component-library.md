@@ -14,7 +14,7 @@ Initially, I was apprehensive. Our team was small, juggling multiple responsibil
 
 Even if you're a small team or at an early project stage, I encourage you to take the plunge. The benefits are immediate: faster prototyping, isolated development, and an accelerated design and development process.
 
-[Key Learnings:]{.px-2 .py-1 .bg-green-400 .rounded-lg}
+[Key Learnings:]{.my-5 .text-2xl}
 
 - **Start Simple**: Begin with basic components to lay the groundwork for more complex elements.
 - **Establish Conventions**: Define processes early on—naming conventions, choice of CSS preprocessors, testing strategies, etc.—to streamline development.
@@ -24,7 +24,7 @@ Even if you're a small team or at an early project stage, I encourage you to tak
 - **Invest in Documentation**: Comprehensive documentation is as crucial as testing; it supports scalability and team onboarding.
 - **Leverage Existing Solutions**: Don't reinvent the wheel. Utilize existing components and extend them to suit your needs
 
-[Tools and resources we found valuable:]{.px-2 .py-1 .bg-green-400 .rounded-lg}
+[Tools and resources we found valuable:]{.my-5 .text-2xl}
 
 - [Storybook](https://storybook.js.org/)
 - [@storybook/addon-docs](https://www.npmjs.com/package/@storybook/addon-docs)
