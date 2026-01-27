@@ -1,13 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import Footer from '@/components/Footer.vue'
 
-const slug = useRoute().params.slug
-const { data: post } = await useAsyncData(`post-${slug}`, () => {
-  return queryCollection('post').path(`/post/${slug}`).first()
-})
+const { data: posts } = await useAsyncData(() => queryCollection('post').all())
 
 useSeoMeta({
-  title: `${post.value?.title} - maxi gimenez`,
+  title: 'Blog — Maxi Gimenez',
+  description: 'Notes on engineering leadership, frontend systems, and building products.',
 })
 </script>
 
@@ -30,11 +28,11 @@ useSeoMeta({
             <button class="toolbar-btn">↻</button>
           </div>
           <div class="ml-3 flex items-center gap-2 text-xs">
-            <div class="text-slate-700">blog/{{ post.slug || 'post' }}.md</div>
+            <div class="text-slate-700">blog.mdx</div>
           </div>
           <div class="ml-auto flex items-center gap-2 text-xs text-slate-700">
             <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-            Reading mode
+            Reading list
           </div>
         </div>
 
@@ -67,24 +65,28 @@ useSeoMeta({
 
         <div class="window-body space-y-10 pb-10">
           <header class="space-y-3">
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-600">Blog · {{ post.meta.date }}</p>
-            <h1 class="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">{{ post.title }}</h1>
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-600">Blog index</p>
+            <h1 class="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">All posts</h1>
+            <p class="text-base text-slate-700 max-w-2xl">Writing about engineering leadership, frontend systems, and building teams that ship.</p>
           </header>
 
-          <div
-            v-if="post.meta.image"
-            class="mt-6 overflow-hidden rounded-md border border-slate-200"
-          >
-            <img :src="post.meta.image" class="h-80 w-full object-cover" />
+          <div class="grid gap-4 md:grid-cols-2">
+            <NuxtLink
+              v-for="post in posts || []"
+              :key="post.id"
+              :to="{ path: post.path }"
+              class="retro-panel flex flex-col gap-2 p-5 transition hover:-translate-y-1 hover:border-slate-400 hover:shadow-lg"
+            >
+              <p class="text-xs uppercase tracking-[0.15em] text-slate-500">{{ post.meta.date }}</p>
+              <h3 class="text-xl font-semibold text-slate-900">{{ post.title }}</h3>
+              <p class="text-sm text-slate-700 line-clamp-2">
+                {{ post.description || post.excerpt || 'Notes on engineering leadership, frontend craft, and product mindset.' }}
+              </p>
+              <span class="text-sm font-semibold text-indigo-700">Read post →</span>
+            </NuxtLink>
           </div>
 
-          <article class="glass-panel soft-border mt-6 space-y-4 p-6 rounded-md">
-            <ContentRenderer :value="post" class="space-y-4" />
-          </article>
-
-          <div class="mt-10">
-            <Footer />
-          </div>
+          <Footer />
         </div>
       </div>
     </div>
