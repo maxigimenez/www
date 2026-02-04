@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   playwright:
-    runs-on: namespace-profile-default
+    runs-on: nnamespace-profile-linux-optimal
     env:
       CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
       CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
@@ -18,13 +18,20 @@ jobs:
       contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: namespacelabs/nscloud-checkout-action@v8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+
+      - name: Configure Namespace cache
+        uses: namespacelabs/nscloud-cache-action@v1
+        with:
+          cache: |
+            playwright
+          path: |
+            ~/.npm
 
       - name: Install dependencies
         run: npm ci
