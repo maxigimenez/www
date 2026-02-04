@@ -12,66 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.deployment_status.state == 'success' &&
-      (contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app') ||
-       contains(format('{0}', github.event.deployment_status.target_url), '.vercel.app'))
+      (contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
     steps:
-      - name: Resolve PR and preview URL from deployment event
-        id: context
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const sha = context.payload.deployment.sha;
-            const previewUrl =
-              context.payload.deployment_status.environment_url ||
-              context.payload.deployment_status.target_url ||
-              '';
-
-            const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-              owner,
-              repo,
-              commit_sha: sha
-            });
-
-            const openPr = prs.data.find((pr) => pr.state === 'open');
-            const shouldRun = Boolean(openPr) && previewUrl.includes('.vercel.app');
-
-            core.setOutput('should_run', shouldRun ? 'true' : 'false');
-            core.setOutput('preview_url', previewUrl);
-            core.setOutput('pr_number', openPr ? String(openPr.number) : '');
-
-            if (!openPr) {
-              core.info(`No open PR associated with commit ${sha}.`);
-            } else {
-              core.info(`Running for PR #${openPr.number} at ${previewUrl}`);
-            }
-
       - name: Checkout repository
-        if: steps.context.outputs.should_run == 'true'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        if: steps.context.outputs.should_run == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
-        if: steps.context.outputs.should_run == 'true'
         run: npm ci
 
       - name: Install Playwright browser
-        if: steps.context.outputs.should_run == 'true'
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright checks against preview URL
-        if: steps.context.outputs.should_run == 'true'
         run: npm run test:e2e
         env:
-          ENVIRONMENT_URL: ${{ steps.context.outputs.preview_url }}
-
-      - name: Skip when deployment is not for an open PR preview
-        if: steps.context.outputs.should_run != 'true'
-        run: echo "Skipping: deployment status is not tied to an open PR preview URL."
+          ENVIRONMENT_URL: ${{ github.event.deployment_status.environment_url }}
