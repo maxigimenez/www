@@ -10,6 +10,9 @@ permissions:
 jobs:
   playwright:
     runs-on: ubuntu-latest
+    env:
+      CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
+      CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
     if: >
       github.event.deployment_status.state == 'success' &&
       contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
