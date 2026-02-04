@@ -1,5 +1,4 @@
 import { defineConfig, devices } from '@playwright/test'
-// import { createChecklyReporter } from '@checkly/playwright-reporter'
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -11,11 +10,6 @@ export default defineConfig({
       apiKey: process.env.CHECKLY_API_KEY,
       accountId: process.env.CHECKLY_ACCOUNT_ID,  
     }]
-    // createChecklyReporter({
-    //   apiKey: process.env.CHECKLY_API_KEY,
-    //   accountId: process.env.CHECKLY_ACCOUNT_ID,
-    //   verbose: true,
-    // }),
   ],
   use: {
     baseURL: process.env.ENVIRONMENT_URL,

@@ -54,31 +54,9 @@ const sideProjects = [
   },
 ]
 
-const focuses = [
-  {
-    title: 'Product leadership',
-    description: 'Leading teams shipping monitoring tools at ChecklyHQ, keeping engineers fast and fearless.',
-  },
-  {
-    title: 'Engineering craft',
-    description: 'Guiding frontend architecture, design systems, and durable delivery practices.',
-  },
-  {
-    title: 'Playful storytelling',
-    description: 'Blending sharp execution with a friendly, human tone across docs, talks, and UX.',
-  },
-]
-
-const stats = [
-  { label: 'Years shipping', value: '14+' },
-  { label: 'Teams led', value: '4' },
-  { label: 'Side projects', value: '6' },
-  { label: 'Countries worked from', value: '7' },
-]
-
 useSeoMeta({
-  title: 'Maxi Gimenez — Engineering Manager & Maker',
-  description: 'Engineering manager at ChecklyHQ with 14+ years building high-performing engineering teams and playful products.',
+  title: 'Maxi Gimenez — Engineering Manager | Team Lead',
+  description: 'Engineering manager with 14+ years building high-performing teams and playful products.',
 })
 </script>
 
@@ -98,7 +76,7 @@ useSeoMeta({
               <button class="toolbar-btn">↻</button>
             </div>
             <div class="ml-3 flex items-center gap-2 text-xs">
-              <div class="h-6 w-6 rounded bg-gradient-to-br from-orange-400 to-amber-200 flex items-center justify-center text-slate-900 font-bold">MG</div>
+              <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
               <div class="text-slate-700">home.mdx</div>
             </div>
           </div>
@@ -111,25 +89,31 @@ useSeoMeta({
                 <div class="flex flex-wrap items-center gap-2">
                   <span class="label-pill">
                     <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Available for chats
+                    Let's chat!
                   </span>
                   <span class="label-pill">Engineering manager</span>
                 </div>
                 <div class="space-y-3">
                   <h1 class="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
-                    Maxi Gimenez — engineering leader building resilient products and teams.
+                    Maxi Gimenez
                   </h1>
-                  <p class="max-w-2xl text-base text-slate-700">
-                    Full-stack and frontend background, now leading cross-functional squads at <a href="https://checklyhq.com" target="_blank">ChecklyHQ</a>. I hire thoughtfully, set clear expectations, and stay hands-on with production systems while mentoring engineers and shipping scalable, customer-critical products.
+                  <p class="text-base text-slate-700">
+                    I’m an engineering leader with a background as a full-stack and frontend engineer, and several years of experience leading cross-functional teams. I’ve built and grown high-performing teams through thoughtful hiring, clear expectations, and strong engineering culture, while staying hands-on with complex, production systems.
+                  </p>
+                  <p class="text-base text-slate-700">
+                    At my last role, I lead a team of six engineers, focusing on mentoring, career development, and delivering scalable, customer-critical products.
+                  </p>
+                  <p class="text-base text-slate-700">
+                    Outside of work, I enjoy wild camping, following Formula 1, playing Magic: The Gathering, and spending time with my cat. <br/>
+                  </p>
+                  <p class="text-base text-slate-700">
+                    I’m also passionate about <RouterLink :to="{ path: '/shipping' }">building</RouterLink> side projects that combine engineering with personal interests.
                   </p>
                 </div>
 
                 <div class="flex flex-wrap gap-3">
-                  <a href="mailto:gimenez.maxi@gmail.com" class="rounded border border-slate-900 bg-slate-900 px-5 py-3 text-sm font-semibold text-amber-100 shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition hover:-translate-y-0.5">
-                    Talk with me
-                  </a>
-                  <a href="/resume.pdf" target="_blank" class="rounded border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 hover:border-slate-400">
-                    Download resume
+                  <a href="mailto:gimenez.maxi@gmail.com" class="rounded border border-slate-900 bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition hover:-translate-y-0.5">
+                    Let's chat!
                   </a>
                 </div>
               </div>
@@ -138,19 +122,17 @@ useSeoMeta({
                 <div class="retro-panel p-4">
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                      <div class="h-8 w-8 rounded bg-orange-200 border border-amber-300 flex items-center justify-center text-lg">🛠️</div>
-                      <div class="leading-tight">
-                        <p class="text-sm font-semibold text-slate-900">Ongoing build</p>
-                        <p class="text-xs text-slate-600">Weekend ship mode</p>
+                      <div class="h-8 w-8 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-lg">
+                        <Icon name="uil:rocket" size="1em" />
+                      </div>
+                      <div class="leading-2">
+                        <span class="text-sm font-semibold text-slate-900">Ongoing build</span><br/>
+                        <span class="text-xs text-slate-600">Weekend ship mode</span>
                       </div>
                     </div>
-                    <RouterLink :to="{ path: '/ongong' }" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900">
+                    <RouterLink :to="{ path: '/shipping' }" class="text-xs font-semibold">
                       View →
                     </RouterLink>
-                  </div>
-                  <div class="mt-3 rounded border border-slate-200 bg-slate-50 p-3 text-sm text-slate-800">
-                    <p class="font-semibold">Telemetry companion</p>
-                    <p class="text-slate-700">A small app for visualizing dev/test metrics with playful desktop UI. Shipping in public.</p>
                   </div>
                 </div>
 
@@ -159,7 +141,7 @@ useSeoMeta({
                     <div>
                       <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Last role</p>
                       <p class="text-lg font-semibold text-slate-900">
-                        Engineering Manager @ <a href="https://checklyhq.com" target="_blank" class="text-emerald-800 hover:text-emerald-900">ChecklyHQ</a>
+                        Engineering Manager @ <a href="https://checklyhq.com" target="_blank">ChecklyHQ</a>
                       </p>
                     </div>
                     <span class="rounded border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700">Remote</span>
@@ -192,7 +174,7 @@ useSeoMeta({
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-sm text-slate-600">Weekend builds</p>
-                  <h2 class="text-3xl font-semibold text-slate-900">Side projects that keep me curious</h2>
+                  <h2 class="text-3xl font-semibold text-slate-900">Side projects</h2>
                 </div>
                 <p class="text-sm text-slate-600">Small bets, real users, plenty of learnings.</p>
               </div>
@@ -201,8 +183,8 @@ useSeoMeta({
                 <div v-for="project in sideProjects" :key="project.title" class="retro-panel p-5">
                   <div class="flex items-center justify-between gap-3">
                     <div class="flex items-center gap-3">
-                      <span class="text-2xl">{{ project.emoji }}</span>
-                      <h3 class="text-xl font-semibold text-slate-900">{{ project.title }}</h3>
+                      <span class="text-lg">{{ project.emoji }}</span>
+                      <h3 class="text-lg font-semibold text-slate-900">{{ project.title }}</h3>
                     </div>
                     <span
                       class="rounded px-3 py-1 text-xs font-semibold border border-slate-300 bg-white"
@@ -216,7 +198,7 @@ useSeoMeta({
                       {{ project.status }}
                     </span>
                   </div>
-                  <p class="text-slate-700">{{ project.description }}</p>
+                  <p class="text-slate-700 text-sm">{{ project.description }}</p>
                   <div class="mt-2 flex items-center justify-between text-sm text-slate-600">
                     <div class="flex items-center gap-2">
                       <span class="h-2 w-2 rounded-full bg-slate-400"></span>
@@ -226,7 +208,7 @@ useSeoMeta({
                       v-if="project.link"
                       :href="project.link"
                       target="_blank"
-                      class="text-sm font-semibold text-emerald-700 hover:text-emerald-900"
+                      class="text-sm font-semibold"
                     >
                       View →
                     </a>
@@ -242,9 +224,9 @@ useSeoMeta({
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-sm text-slate-600">Writing</p>
-                  <h2 class="text-3xl font-semibold text-slate-900">Latest blog notes</h2>
+                  <h2 class="text-3xl font-semibold text-slate-900">Latest blog posts</h2>
                 </div>
-                <p class="text-sm text-slate-600">Product, engineering, and the occasional Formula 1 tangent.</p>
+                <p class="text-sm text-slate-600">Product, engineering, and the occasional other bits.</p>
               </div>
 
               <div class="grid gap-4 md:grid-cols-2">
@@ -259,24 +241,8 @@ useSeoMeta({
                   <p class="text-sm text-slate-700 line-clamp-2">
                     {{ post.description }}
                   </p>
-                  <span class="text-sm font-semibold text-emerald-700">Read post →</span>
+                  <span class="text-sm font-semibold">Read post →</span>
                 </NuxtLink>
-              </div>
-            </section>
-
-            <section class="retro-panel flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p class="text-sm text-slate-600">Let’s connect</p>
-                <h2 class="text-2xl font-semibold text-slate-900">Want to chat about products or teams?</h2>
-                <p class="text-slate-700">Ping me for product leadership, frontend systems, or a side project idea.</p>
-              </div>
-              <div class="flex flex-wrap gap-3">
-                <a href="mailto:gimenez.maxi@gmail.com" class="rounded bg-slate-900 px-5 py-3 text-sm font-semibold text-amber-100 shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition">
-                  Email me
-                </a>
-                <a href="/resume.pdf" target="_blank" class="rounded border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 hover:border-slate-400">
-                  Resume
-                </a>
               </div>
             </section>
 

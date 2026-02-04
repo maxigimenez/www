@@ -8,7 +8,7 @@ const { data } = await useAsyncData('shipping-build-log', () => {
 const timeline = computed(() => data.value?.meta?.timeline || [])
 
 useSeoMeta({
-  title: 'Ongong — Maxi Gimenez',
+  title: 'Shipping — Maxi Gimenez',
   description: 'Timeline updates for the ongoing side project build.',
 })
 </script>
@@ -33,7 +33,8 @@ useSeoMeta({
             <button class="toolbar-btn">↻</button>
           </div>
           <div class="ml-3 flex items-center gap-2 text-xs">
-            <div class="text-slate-700">ongoing.mdx</div>
+            <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
+            <div class="text-slate-700">shipping.mdx</div>
           </div>
           <div class="ml-auto flex items-center gap-2 text-xs text-slate-700">
             <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
@@ -58,7 +59,7 @@ useSeoMeta({
             <li
               v-for="entry in timeline"
               :key="`${entry.date}-${entry.title}`"
-              class="retro-panel m-0 p-5"
+              class="retro-panel m-0 p-5 mb-4"
             >
               <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -72,10 +73,6 @@ useSeoMeta({
               <p class="mt-2 text-sm text-slate-700">{{ entry.summary }}</p>
             </li>
           </ol>
-
-          <article v-if="ongoing" class="glass-panel soft-border p-6 rounded-md">
-            <ContentRenderer :value="ongoing" class="space-y-4" />
-          </article>
 
           <Footer />
         </div>

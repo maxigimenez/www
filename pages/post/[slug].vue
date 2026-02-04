@@ -30,7 +30,10 @@ useSeoMeta({
             <button class="toolbar-btn">↻</button>
           </div>
           <div class="ml-3 flex items-center gap-2 text-xs">
-            <div class="text-slate-700">blog/{{ post.slug || 'post' }}.md</div>
+            <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
+            <div class="text-slate-700">blog</div>
+            <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
+            <div class="text-slate-700">{{ post.id.replace('post/post/', '') }}</div>
           </div>
           <div class="ml-auto flex items-center gap-2 text-xs text-slate-700">
             <span class="h-2 w-2 rounded-full bg-emerald-500"></span>

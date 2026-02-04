@@ -28,6 +28,7 @@ useSeoMeta({
             <button class="toolbar-btn">↻</button>
           </div>
           <div class="ml-3 flex items-center gap-2 text-xs">
+            <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
             <div class="text-slate-700">blog.mdx</div>
           </div>
           <div class="ml-auto flex items-center gap-2 text-xs text-slate-700">
