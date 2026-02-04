@@ -190,7 +190,7 @@ useSeoMeta({
                 <div class="retro-panel p-4">
                   <div class="flex items-center justify-between">
                     <div>
-                      <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Current role</p>
+                      <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Last role</p>
                       <p class="text-lg font-semibold text-slate-900">
                         Engineering Manager @ <a href="https://checklyhq.com" target="_blank" class="text-indigo-800 hover:text-indigo-900">ChecklyHQ</a>
                       </p>
