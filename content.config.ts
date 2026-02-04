@@ -5,6 +5,10 @@ export default defineContentConfig({
     post: defineCollection({
       type: 'page',
       source: 'post/*.md'
-    })
+    }),
+    shipping: defineCollection({
+      type: 'page',
+      source: 'shipping/*.md'
+    }),
   }
 })

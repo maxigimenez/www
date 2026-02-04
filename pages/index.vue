@@ -103,40 +103,7 @@ useSeoMeta({
             </div>
           </div>
 
-          <div class="border-b border-slate-300 bg-slate-50 px-3 py-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-700">
-            <a href="#work" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:briefcase" />
-              Work
-            </a>
-            <a href="#projects" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:apps" />
-              Projects
-            </a>
-            <a href="/blog" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:document-layout-left" />
-              Blog
-            </a>
-            <a href="/resume.pdf" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:file-alt" />
-              Resume
-            </a>
-            <a href="mailto:gimenez.maxi@gmail.com" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:envelope-alt" />
-              Email
-            </a>
-            <a href="https://github.com/maxigimenez" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:github" />
-              GitHub
-            </a>
-            <a href="https://linkedin.com/in/maxigimenez/" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:linkedin" />
-              LinkedIn
-            </a>
-            <a href="https://instagram.com/gmaxi_" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-              <Icon name="uil:instagram" />
-              Instagram
-            </a>
-          </div>
+          <BookmarkLinks />
 
           <div class="window-body space-y-10 pb-10">
             <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
@@ -177,7 +144,7 @@ useSeoMeta({
                         <p class="text-xs text-slate-600">Weekend ship mode</p>
                       </div>
                     </div>
-                    <RouterLink :to="{ path: '/ongoing' }" class="text-xs font-semibold text-indigo-700 hover:text-indigo-900">
+                    <RouterLink :to="{ path: '/ongong' }" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900">
                       View →
                     </RouterLink>
                   </div>
@@ -192,7 +159,7 @@ useSeoMeta({
                     <div>
                       <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Last role</p>
                       <p class="text-lg font-semibold text-slate-900">
-                        Engineering Manager @ <a href="https://checklyhq.com" target="_blank" class="text-indigo-800 hover:text-indigo-900">ChecklyHQ</a>
+                        Engineering Manager @ <a href="https://checklyhq.com" target="_blank" class="text-emerald-800 hover:text-emerald-900">ChecklyHQ</a>
                       </p>
                     </div>
                     <span class="rounded border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700">Remote</span>
@@ -259,7 +226,7 @@ useSeoMeta({
                       v-if="project.link"
                       :href="project.link"
                       target="_blank"
-                      class="text-sm font-semibold text-indigo-700 hover:text-indigo-900"
+                      class="text-sm font-semibold text-emerald-700 hover:text-emerald-900"
                     >
                       View →
                     </a>
@@ -292,7 +259,7 @@ useSeoMeta({
                   <p class="text-sm text-slate-700 line-clamp-2">
                     {{ post.description }}
                   </p>
-                  <span class="text-sm font-semibold text-indigo-700">Read post →</span>
+                  <span class="text-sm font-semibold text-emerald-700">Read post →</span>
                 </NuxtLink>
               </div>
             </section>

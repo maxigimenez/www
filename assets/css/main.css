@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -9,24 +8,23 @@
   body {
     @apply text-slate-900 antialiased;
     font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background-color: #f3eee3;
+    background-color: var(--color-gray-100);
     background-image:
-      radial-gradient(#d6cfbe 1px, transparent 1px),
-      radial-gradient(#d6cfbe 1px, transparent 1px),
-      radial-gradient(900px 700px at 12% 20%, rgba(255, 155, 95, 0.08), transparent),
-      radial-gradient(800px 600px at 85% 12%, rgba(140, 112, 255, 0.08), transparent);
-    background-size: 18px 18px, 18px 18px, cover, cover;
-    background-position: 0 0, 9px 9px, 0 0, 0 0;
-    background-repeat: repeat, repeat, no-repeat, no-repeat;
+      radial-gradient(var(--color-gray-400) 1px, transparent 1px),
+      radial-gradient(var(--color-gray-400) 1px, transparent 1px),
+      radial-gradient(1200px 900px at 50% 10%, var(--color-gray-100), transparent);
+    background-size: 18px 18px, 18px 18px, cover;
+    background-position: 0 0, 9px 9px, 0 0;
+    background-repeat: repeat, repeat, no-repeat;
     background-attachment: fixed;
   }
 
   a {
-    @apply text-indigo-800 no-underline transition-colors duration-150;
+    @apply text-green-600 no-underline transition-colors duration-150;
   }
 
   a:hover {
-    @apply text-indigo-900;
+    @apply text-green-700;
   }
 
   p {
@@ -170,7 +168,7 @@
   /* dock removed for home layout per request */
 
   .window {
-    @apply relative rounded-md border border-slate-400 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)];
+    @apply relative overflow-hidden rounded-md border border-slate-400 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)];
   }
 
   .window-toolbar {

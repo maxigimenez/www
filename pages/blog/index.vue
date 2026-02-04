@@ -36,32 +36,7 @@ useSeoMeta({
           </div>
         </div>
 
-        <div class="border-b border-slate-300 bg-slate-50 px-3 py-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-700">
-          <RouterLink :to="{ path: '/' }" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-            <Icon name="uil:home" />
-            Home
-          </RouterLink>
-          <a href="/resume.pdf" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-            <Icon name="uil:file-alt" />
-            Resume
-          </a>
-          <a href="mailto:gimenez.maxi@gmail.com" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-            <Icon name="uil:envelope-alt" />
-            Email
-          </a>
-          <a href="https://github.com/maxigimenez" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-            <Icon name="uil:github" />
-            GitHub
-          </a>
-          <a href="https://linkedin.com/in/maxigimenez/" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-            <Icon name="uil:linkedin" />
-            LinkedIn
-          </a>
-          <a href="https://instagram.com/gmaxi_" target="_blank" class="flex items-center gap-1 border border-slate-300 bg-white px-2 py-1 rounded">
-            <Icon name="uil:instagram" />
-            Instagram
-          </a>
-        </div>
+        <BookmarkLinks />
 
         <div class="window-body space-y-10 pb-10">
           <header class="space-y-3">
@@ -82,7 +57,7 @@ useSeoMeta({
               <p class="text-sm text-slate-700 line-clamp-2">
                 {{ post.description || post.excerpt || 'Notes on engineering leadership, frontend craft, and product mindset.' }}
               </p>
-              <span class="text-sm font-semibold text-indigo-700">Read post →</span>
+              <span class="text-sm font-semibold text-emerald-700">Read post →</span>
             </NuxtLink>
           </div>
 
