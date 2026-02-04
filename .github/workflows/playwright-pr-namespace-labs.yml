@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   playwright:
-    runs-on: tenant_h5s611uestd3c
+    runs-on: namespace-profile-default
     if: >
       github.event.deployment_status.state == 'success' &&
       contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
