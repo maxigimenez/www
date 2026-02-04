@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   playwright:
-    runs-on: nnamespace-profile-linux-optimal
+    runs-on: namespace-profile-linux-optimal
     env:
       CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
       CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
