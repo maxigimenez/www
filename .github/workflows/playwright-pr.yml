@@ -1,90 +1,77 @@
 name: Playwright PR Checks
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+  deployment_status:
 
 permissions:
   contents: read
-  deployments: read
   pull-requests: read
 
-concurrency:
-  group: playwright-pr-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
-  resolve-preview-url:
+  playwright:
     runs-on: ubuntu-latest
-    outputs:
-      preview_url: ${{ steps.find-preview.outputs.preview_url }}
+    if: >
+      github.event.deployment_status.state == 'success' &&
+      (contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app') ||
+       contains(format('{0}', github.event.deployment_status.target_url), '.vercel.app'))
     steps:
-      - name: Find preview URL for this PR commit
-        id: find-preview
+      - name: Resolve PR and preview URL from deployment event
+        id: context
         uses: actions/github-script@v7
         with:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const sha = context.payload.pull_request.head.sha;
-            const deployments = await github.paginate(
-              github.rest.repos.listDeployments,
-              { owner, repo, sha, per_page: 20 }
-            );
+            const sha = context.payload.deployment.sha;
+            const previewUrl =
+              context.payload.deployment_status.environment_url ||
+              context.payload.deployment_status.target_url ||
+              '';
 
-            for (const deployment of deployments) {
-              const statuses = await github.paginate(
-                github.rest.repos.listDeploymentStatuses,
-                {
-                  owner,
-                  repo,
-                  deployment_id: deployment.id,
-                  per_page: 20
-                }
-              );
+            const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner,
+              repo,
+              commit_sha: sha
+            });
 
-              const successStatus = statuses.find((status) => status.state === 'success');
-              const previewUrl = successStatus?.environment_url || successStatus?.target_url || '';
+            const openPr = prs.data.find((pr) => pr.state === 'open');
+            const shouldRun = Boolean(openPr) && previewUrl.includes('.vercel.app');
 
-              if (previewUrl && previewUrl.includes('.vercel.app')) {
-                core.info(`Vercel preview URL found: ${previewUrl}`);
-                core.setOutput('preview_url', previewUrl);
-                return;
-              }
+            core.setOutput('should_run', shouldRun ? 'true' : 'false');
+            core.setOutput('preview_url', previewUrl);
+            core.setOutput('pr_number', openPr ? String(openPr.number) : '');
+
+            if (!openPr) {
+              core.info(`No open PR associated with commit ${sha}.`);
+            } else {
+              core.info(`Running for PR #${openPr.number} at ${previewUrl}`);
             }
 
-            core.info('No Vercel preview URL available for this PR commit.');
-            core.setOutput('preview_url', '');
-
-  playwright:
-    needs: resolve-preview-url
-    if: needs.resolve-preview-url.outputs.preview_url != ''
-    runs-on: ubuntu-latest
-    steps:
       - name: Checkout repository
+        if: steps.context.outputs.should_run == 'true'
         uses: actions/checkout@v4
 
       - name: Setup Node.js
+        if: steps.context.outputs.should_run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
       - name: Install dependencies
+        if: steps.context.outputs.should_run == 'true'
         run: npm ci
 
       - name: Install Playwright browser
+        if: steps.context.outputs.should_run == 'true'
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright checks against preview URL
+        if: steps.context.outputs.should_run == 'true'
         run: npm run test:e2e
         env:
-          ENVIRONMENT_URL: ${{ needs.resolve-preview-url.outputs.preview_url }}
+          ENVIRONMENT_URL: ${{ steps.context.outputs.preview_url }}
 
-  no-preview-url:
-    needs: resolve-preview-url
-    if: needs.resolve-preview-url.outputs.preview_url == ''
-    runs-on: ubuntu-latest
-    steps:
-      - name: Skip Playwright checks
-        run: echo "No preview URL available for this PR commit, skipping Playwright checks."
+      - name: Skip when deployment is not for an open PR preview
+        if: steps.context.outputs.should_run != 'true'
+        run: echo "Skipping: deployment status is not tied to an open PR preview URL."
