@@ -104,7 +104,15 @@ useSeoMeta({
                     At my last role, I lead a team of six engineers, focusing on mentoring, career development, and delivering scalable, customer-critical products.
                   </p>
                   <p class="text-base text-slate-700">
-                    Outside of work, I enjoy wild camping, following Formula 1, playing Magic: The Gathering, and spending time with my cat. <br/>
+                    Outside of work, I enjoy wild camping, following Formula 1, playing Magic: The Gathering, and spending time with
+                    <span class="group relative inline-block">
+                      <span class="ml-1 underline decoration-green-600 decoration-1 underline-offset-2 text-green-600 cursor-default">
+                        my cat
+                      </span>
+                      <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-3 w-40 -translate-x-1/2 rounded-md border border-slate-300 bg-white p-1 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
+                        <img src="/annu.jpg" alt="Annu the cat" class="h-50 w-full rounded object-cover" />
+                      </span>
+                    </span>.
                   </p>
                   <p class="text-base text-slate-700">
                     I’m also passionate about <RouterLink :to="{ path: '/shipping' }">building</RouterLink> side projects that combine engineering with personal interests.
