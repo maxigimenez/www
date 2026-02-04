@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.deployment_status.state == 'success' &&
-      (contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
+      contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
