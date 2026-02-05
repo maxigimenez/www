@@ -5,7 +5,8 @@ const { data: posts } = await useAsyncData(() => queryCollection('post').all())
 
 const sideProjects = [
   {
-    emoji: '🏎️',
+    icon: 'uil:car-sideview',
+    slug: 'revora',
     title: 'Revora',
     description: 'F1 insights for enthusiasts, engineers, and creators.',
     link: 'https://revora.app/',
@@ -13,7 +14,8 @@ const sideProjects = [
     tone: 'emerald',
   },
   {
-    emoji: '📰',
+    icon: 'uil:newspaper',
+    slug: '7reads',
     title: '7Reads',
     description: 'A mindful reading list extension that respects your attention.',
     link: 'https://7reads.now.sh/',
@@ -21,7 +23,8 @@ const sideProjects = [
     tone: 'sky',
   },
   {
-    emoji: '🧡',
+    icon: 'uil:users-alt',
+    slug: 'skuap',
     title: 'Skuap.com',
     description: 'A platform for leaders to build high performing teams.',
     link: null,
@@ -29,7 +32,8 @@ const sideProjects = [
     tone: 'amber',
   },
   {
-    emoji: '💎',
+    icon: 'uil:database',
+    slug: 'sheetapi',
     title: 'SheetAPI.co',
     description: 'Turn Google Sheets into RESTful APIs with minutes of setup.',
     link: null,
@@ -37,7 +41,8 @@ const sideProjects = [
     tone: 'amber',
   },
   {
-    emoji: '📊',
+    icon: 'uil:chart-line',
+    slug: 'updatefy',
     title: 'Updatefy.co',
     description: 'No-code embeds for Google Sheets. Shipped, sold, and sunset.',
     link: null,
@@ -45,7 +50,8 @@ const sideProjects = [
     tone: 'rose',
   },
   {
-    emoji: '🤑',
+    icon: 'uil:dollar-alt',
+    slug: 'currencymenu',
     title: 'CurrencyMenu.com',
     description: 'Menu bar app to view live exchange rates at a glance.',
     link: null,
@@ -76,8 +82,7 @@ useSeoMeta({
               <button class="toolbar-btn">↻</button>
             </div>
             <div class="ml-3 flex items-center gap-2 text-xs">
-              <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
-              <div class="text-slate-700">home.mdx</div>
+              <div class="prompt-path">open home.mdx</div>
             </div>
           </div>
 
@@ -106,7 +111,7 @@ useSeoMeta({
                   <p class="text-base text-slate-700">
                     Outside of work, I enjoy wild camping, following Formula 1, playing Magic: The Gathering, and spending time with
                     <span class="group relative inline-block">
-                      <span class="ml-1 underline decoration-green-600 decoration-1 underline-offset-2 text-green-600 cursor-default">
+                      <span class="ml-1 underline decoration-emerald-400 text-emerald-400 decoration-1 underline-offset-2 cursor-default">
                         my cat
                       </span>
                       <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-3 w-40 -translate-x-1/2 rounded-md border border-slate-300 bg-white p-1 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
@@ -130,7 +135,7 @@ useSeoMeta({
                 <div class="retro-panel p-4">
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                      <div class="h-8 w-8 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-lg">
+                      <div class="h-8 w-8 rounded border border-emerald-500/40 bg-slate-800 flex items-center justify-center text-lg text-emerald-300">
                         <Icon name="uil:rocket" size="1em" />
                       </div>
                       <div class="leading-2">
@@ -188,41 +193,39 @@ useSeoMeta({
               </div>
 
               <div class="grid gap-4 md:grid-cols-2">
-                <div v-for="project in sideProjects" :key="project.title" class="retro-panel p-5">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3">
-                      <span class="text-lg">{{ project.emoji }}</span>
-                      <h3 class="text-lg font-semibold text-slate-900">{{ project.title }}</h3>
-                    </div>
-                    <span
-                      class="rounded px-3 py-1 text-xs font-semibold border border-slate-300 bg-white"
-                      :class="{
-                        'text-emerald-700': project.tone === 'emerald',
-                        'text-rose-700': project.tone === 'rose',
-                        'text-sky-700': project.tone === 'sky',
-                        'text-amber-700': project.tone === 'amber',
-                      }"
-                    >
-                      {{ project.status }}
-                    </span>
+                <div v-for="project in sideProjects" :key="project.title" class="project-terminal">
+                  <div class="project-terminal-bar">
+                    <span class="project-terminal-title">$ code ./{{ project.slug }}</span>
                   </div>
-                  <p class="text-slate-700 text-sm">{{ project.description }}</p>
-                  <div class="mt-2 flex items-center justify-between text-sm text-slate-600">
-                    <div class="flex items-center gap-2">
-                      <span class="h-2 w-2 rounded-full bg-slate-400"></span>
-                      <span>Built with care</span>
+                  <div class="project-terminal-body">
+                    <div class="flex items-center justify-between gap-3">
+                      <div class="flex items-center gap-2">
+                        <Icon :name="project.icon" size="1.1em" class="text-emerald-300" />
+                        <h3 class="text-lg font-semibold text-slate-100">{{ project.title }}</h3>
+                      </div>
+                      <span
+                        class="terminal-status"
+                        :class="{
+                          'terminal-status-live': project.tone === 'emerald',
+                          'terminal-status-exit': project.tone === 'rose',
+                          'terminal-status-active': project.tone === 'sky',
+                          'terminal-status-paused': project.tone === 'amber',
+                        }"
+                      >
+                        ✓ {{ project.status }}
+                      </span>
                     </div>
-                    <a
-                      v-if="project.link"
-                      :href="project.link"
-                      target="_blank"
-                      class="text-sm font-semibold"
-                    >
-                      View →
-                    </a>
-                    <span v-else class="text-sm text-slate-500">
-                      Archived
-                    </span>
+                    <p class="text-slate-300 text-sm">{{ project.description }}</p>
+                    <div class="mt-2 flex items-center justify-end text-sm text-slate-400">
+                      <a
+                        v-if="project.link"
+                        :href="project.link"
+                        target="_blank"
+                        class="terminal-link"
+                      >
+                        $ open {{ project.slug }}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

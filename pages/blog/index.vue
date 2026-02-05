@@ -19,18 +19,17 @@ useSeoMeta({
 
     <div class="mx-auto flex-1 px-4 py-10 sm:px-6 lg:px-10">
       <div class="window max-w-6xl mx-auto w-full">
-        <div class="window-toolbar">
-          <div class="flex items-center gap-2">
-            <RouterLink :to="{ path: '/' }" class="toolbar-btn flex items-center justify-center">
-              ◀
-            </RouterLink>
-            <button class="toolbar-btn">▶</button>
-            <button class="toolbar-btn">↻</button>
-          </div>
-          <div class="ml-3 flex items-center gap-2 text-xs">
-            <div class="h-6 w-6 rounded bg-gradient-to-br from-green-400 to-green-300 flex items-center justify-center text-slate-900 font-bold">/</div>
-            <div class="text-slate-700">blog.mdx</div>
-          </div>
+          <div class="window-toolbar">
+            <div class="flex items-center gap-2">
+              <RouterLink :to="{ path: '/' }" class="toolbar-btn flex items-center justify-center">
+                ◀
+              </RouterLink>
+              <button class="toolbar-btn">▶</button>
+              <button class="toolbar-btn">↻</button>
+            </div>
+            <div class="ml-3 flex items-center gap-2 text-xs">
+              <div class="prompt-path">open blog.mdx</div>
+            </div>
           <div class="ml-auto flex items-center gap-2 text-xs text-slate-700">
             <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
             Reading list

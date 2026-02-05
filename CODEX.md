@@ -1,17 +1,26 @@
 ## Session Notes
 
-- Adopted a PostHog-inspired desktop/window aesthetic: beige dotted wallpaper, square window chrome with toolbar/bookmark bar, flat retro panels, and consistent max width across home, blog index, and post pages.
-- Updated hero copy to match resume profile: “Maxi Gimenez — engineering leader building resilient products and teams,” emphasizing hands-on leadership at ChecklyHQ and cross-functional mentoring.
-- Navigation bar under the window toolbar now links to Work/Projects/Blog/Resume/Email/GitHub/LinkedIn/Instagram. Removed side docks and moving marquee elements.
-- Added a dedicated blog index page at `/blog` mirroring the window layout; all blog links updated to point to `/blog`.
-- Blog post page uses the same window shell, bookmark bar, and footer placement as home; backgrounds unified (no gradient glows).
-- Right column on home now has:
-  - “Ongoing build” teaser linking to `/ongoing` (pending implementation), with a hammer icon and succinct description.
-  - “Current role” panel with new stack (Vue.js, Nuxt.js, TypeScript, Node.js, PostgreSQL, Vercel, AWS, Claude Code, OpenAI Codex), bullets aligned to resume, and ChecklyHQ linked.
-- Simplified hero CTAs to “Talk with me” and “Download resume”; removed stats cards and leadership section; removed “Frontend craft” tag.
-- Socials exclude X; footer aligns inside containers on all pages.
+- Design direction is now Warp/terminal-inspired: dark shell, high-contrast text, emerald accents, command-like UI language, and preserved window/chrome structure across pages.
+- Shared window pattern is active in `pages/index.vue`, `pages/blog/index.vue`, `pages/post/[slug].vue`, and `pages/shipping.vue`:
+  - toolbar buttons + command chip (`.prompt-path`)
+  - bookmark links below toolbar stay constant during navigation
+  - consistent max-width container and in-window content body
+- Command chips were normalized from `cat ...` to `open ...` everywhere:
+  - `open home.mdx`, `open blog.mdx`, `open shipping.mdx`, `open blog/<slug>`
+- Home page side-project cards were redesigned as terminal cards:
+  - use Nuxt icon library (no emojis)
+  - header command per card: `$ code ./<project-slug>`
+  - status as check-style tag (`✓ Live`, `✓ Paused`, `✓ Exit`)
+  - action link for live projects: `$ open <project-slug>`
+  - removed traffic-light dots, “Built with care”, and “Archived” text
+- “Ongoing build” panel icon treatment was adjusted for contrast with the dark theme:
+  - removed bright green gradient block
+  - now uses darker terminal-style icon container + subtle emerald border/accent
+- “my cat” hover text keeps tooltip behavior with `public/annu.jpg` and now matches link green (`text-emerald-400`) instead of custom/alternate green.
+- Earlier experimental prompt/check styling on top hero chips and “Last role” bullet list was reverted (user preference).
 
 ## Pending / Next Steps
 
-- Build `/ongoing` page to expand the ongoing side-project teaser.
-- If desired, add more PostHog-era details (icons, toolbar spacing) or refine spacing on bookmark bar/CTA.
+- Optional: make blog cards match the same terminal-card visual grammar as side projects.
+- Optional: reduce/resolve the existing Tailwind/PostCSS gradient warning surfaced during `npm run build` (non-blocking, current build passes).
+- Note: there is currently no dedicated `/ongoing` page file in `pages/`; ongoing content currently points to `/shipping`.
