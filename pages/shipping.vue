@@ -64,6 +64,15 @@ useSeoMeta({
                 <div>
                   <p class="text-xs uppercase tracking-[0.14em] text-slate-500">{{ entry.date }}</p>
                   <h2 class="text-xl font-semibold text-slate-900">{{ entry.title }}</h2>
+                  <a
+                    v-if="entry.link"
+                    :href="entry.link"
+                    target="_blank"
+                    rel="noopener"
+                    class="mt-1 inline-flex text-xs font-semibold text-emerald-400"
+                  >
+                    $ open
+                  </a>
                 </div>
                 <span class="rounded border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-emerald-700">
                   {{ entry.status }}

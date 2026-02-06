@@ -2,6 +2,22 @@
 import Footer from '@/components/Footer.vue'
 
 const { data: posts } = await useAsyncData(() => queryCollection('post').all())
+const { data: shippingLog } = await useAsyncData('shipping-build-log', () => {
+  return queryCollection('shipping').path('/shipping/build-log').first()
+})
+
+const latestShippingEntry = computed(() => {
+  const timeline = shippingLog.value?.meta?.timeline || []
+  return timeline[timeline.length - 1] || null
+})
+
+const latestShippingSummary = computed(() => {
+  const summary = latestShippingEntry.value?.summary || ''
+  if (!summary) return ''
+  const trimmed = summary.trim()
+  if (trimmed.length <= 120) return trimmed
+  return `${trimmed.slice(0, 120).trim()}…`
+})
 
 const sideProjects = [
   {
@@ -106,9 +122,6 @@ useSeoMeta({
                     I’m an engineering leader with a background as a full-stack and frontend engineer, and several years of experience leading cross-functional teams. I’ve built and grown high-performing teams through thoughtful hiring, clear expectations, and strong engineering culture, while staying hands-on with complex, production systems.
                   </p>
                   <p class="text-base text-slate-700">
-                    At my last role, I lead a team of six engineers, focusing on mentoring, career development, and delivering scalable, customer-critical products.
-                  </p>
-                  <p class="text-base text-slate-700">
                     Outside of work, I enjoy wild camping, following Formula 1, playing Magic: The Gathering, and spending time with
                     <span class="group relative inline-block">
                       <span class="ml-1 underline decoration-emerald-400 text-emerald-400 decoration-1 underline-offset-2 cursor-default">
@@ -118,9 +131,6 @@ useSeoMeta({
                         <img src="/annu.jpg" alt="Annu the cat" class="h-50 w-full rounded object-cover" />
                       </span>
                     </span>.
-                  </p>
-                  <p class="text-base text-slate-700">
-                    I’m also passionate about <RouterLink :to="{ path: '/shipping' }">building</RouterLink> side projects that combine engineering with personal interests.
                   </p>
                 </div>
 
@@ -147,12 +157,23 @@ useSeoMeta({
                       View →
                     </RouterLink>
                   </div>
+                  <div class="mt-3 text-sm text-slate-700">
+                    <p v-if="latestShippingEntry" class="font-semibold text-slate-900">
+                      {{ latestShippingEntry.title }}
+                    </p>
+                    <p v-if="latestShippingEntry" class="text-xs text-slate-600 leading-snug">
+                      {{ latestShippingSummary }}
+                    </p>
+                    <p v-else class="text-xs text-slate-600">
+                      no entries yet
+                    </p>
+                  </div>
                 </div>
 
                 <div class="retro-panel p-4">
                   <div class="flex items-center justify-between">
                     <div>
-                      <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Last role</p>
+                      <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Current / Last role</p>
                       <p class="text-lg font-semibold text-slate-900">
                         Engineering Manager @ <a href="https://checklyhq.com" target="_blank">ChecklyHQ</a>
                       </p>
@@ -170,15 +191,6 @@ useSeoMeta({
                     <span class="rounded border border-slate-300 bg-white px-2 py-1">Claude Code</span>
                     <span class="rounded border border-slate-300 bg-white px-2 py-1">OpenAI Codex</span>
                   </div>
-                  <ul class="mt-3 space-y-2 text-sm text-slate-700">
-                    <li>Lead a team of six engineers owning Checkly’s Synthetics product and core platform areas for large, high-traffic customers.</li>
-                    <li>Stay hands-on across frontend, backend, and infrastructure.</li>
-                    <li>Built and shipped synthetic monitoring features to catch issues before users feel them.</li>
-                    <li>Partner with product and customers to turn real needs into scalable solutions.</li>
-                    <li>Support engineers via 1:1s, expectations, and feedback so they grow and do their best work.</li>
-                    <li>Balance delivery with long-term technical decisions to keep the platform reliable and ready to scale.</li>
-                    <li>AI-assisted development: use Claude Code and OpenAI Codex (with guardrails) to accelerate features, refactors, and debugging without compromising quality or security.</li>
-                  </ul>
                 </div>
               </div>
             </section>
