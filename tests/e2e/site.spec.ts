@@ -48,12 +48,29 @@ test.describe('site navigation and key content', () => {
   test('home links include shipping and external profiles', async ({ page }) => {
     await page.goto('/')
 
-    await page.getByRole('link', { name: 'building' }).click()
+    await page.getByRole('link', { name: 'Shiping' }).first().click()
     await expect(page).toHaveURL(/\/shipping$/)
 
     const githubLink = page.getByRole('link', { name: 'GitHub' }).first()
     const linkedInLink = page.getByRole('link', { name: 'LinkedIn' }).first()
     await expect(githubLink).toHaveAttribute('href', /github\.com\/maxigimenez/)
     await expect(linkedInLink).toHaveAttribute('href', /linkedin\.com\/in\/maxigimenez/)
+  })
+
+  test('shipping timeline shows timestamp and optional link', async ({ page }) => {
+    await page.goto('/shipping')
+
+    await expect(page.getByText('2026-02-06 · 14:30')).toBeVisible()
+    await expect(
+      page.getByRole('link', { name: '$ open' }).first(),
+    ).toHaveAttribute('href', /creator\.revora\.app/)
+  })
+
+  test('side project cards use terminal commands and live link', async ({ page }) => {
+    await page.goto('/')
+
+    await expect(page.getByText('$ code ./revora')).toBeVisible()
+    const openLink = page.getByRole('link', { name: '$ open revora' })
+    await expect(openLink).toHaveAttribute('href', /revora\.app/)
   })
 })

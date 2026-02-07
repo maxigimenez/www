@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
+const hasChecklyCreds = Boolean(process.env.CHECKLY_API_KEY && process.env.CHECKLY_ACCOUNT_ID)
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -8,11 +10,12 @@ export default defineConfig({
     ['github'],
     ['@checkly/playwright-reporter', {
       apiKey: process.env.CHECKLY_API_KEY,
-      accountId: process.env.CHECKLY_ACCOUNT_ID,  
-    }]
+      accountId: process.env.CHECKLY_ACCOUNT_ID,
+      dryRun: !hasChecklyCreds,
+    }],
   ],
   use: {
-    baseURL: process.env.ENVIRONMENT_URL,
+    baseURL: process.env.ENVIRONMENT_URL || 'http://localhost:3000',
     trace: 'on',
     video: 'on',
   },
