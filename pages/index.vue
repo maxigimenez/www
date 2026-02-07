@@ -1,91 +1,278 @@
 <script setup lang="ts">
 import Footer from '@/components/Footer.vue'
 
-const { data: posts } = await useAsyncData(() => {
-  return queryCollection('post').all()
+const { data: posts } = await useAsyncData(() => queryCollection('post').all())
+const { data: shippingLog } = await useAsyncData('shipping-build-log', () => {
+  return queryCollection('shipping').path('/shipping/build-log').first()
 })
 
+const latestShippingEntry = computed(() => {
+  const timeline = shippingLog.value?.meta?.timeline || []
+  return timeline[timeline.length - 1] || null
+})
+
+const latestShippingSummary = computed(() => {
+  const summary = latestShippingEntry.value?.summary || ''
+  if (!summary) return ''
+  const trimmed = summary.trim()
+  if (trimmed.length <= 120) return trimmed
+  return `${trimmed.slice(0, 120).trim()}…`
+})
+
+const sideProjects = [
+  {
+    icon: 'uil:car-sideview',
+    slug: 'revora',
+    title: 'Revora',
+    description: 'F1 insights for enthusiasts, engineers, and creators.',
+    link: 'https://revora.app/',
+    status: 'Live',
+    tone: 'emerald',
+  },
+  {
+    icon: 'uil:newspaper',
+    slug: '7reads',
+    title: '7Reads',
+    description: 'A mindful reading list extension that respects your attention.',
+    link: 'https://7reads.now.sh/',
+    status: 'Live',
+    tone: 'sky',
+  },
+  {
+    icon: 'uil:users-alt',
+    slug: 'skuap',
+    title: 'Skuap.com',
+    description: 'A platform for leaders to build high performing teams.',
+    link: null,
+    status: 'Paused',
+    tone: 'amber',
+  },
+  {
+    icon: 'uil:database',
+    slug: 'sheetapi',
+    title: 'SheetAPI.co',
+    description: 'Turn Google Sheets into RESTful APIs with minutes of setup.',
+    link: null,
+    status: 'Paused',
+    tone: 'amber',
+  },
+  {
+    icon: 'uil:chart-line',
+    slug: 'updatefy',
+    title: 'Updatefy.co',
+    description: 'No-code embeds for Google Sheets. Shipped, sold, and sunset.',
+    link: null,
+    status: 'Exit',
+    tone: 'rose',
+  },
+  {
+    icon: 'uil:dollar-alt',
+    slug: 'currencymenu',
+    title: 'CurrencyMenu.com',
+    description: 'Menu bar app to view live exchange rates at a glance.',
+    link: null,
+    status: 'Paused',
+    tone: 'amber',
+  },
+]
+
 useSeoMeta({
-  title: 'maxi gimenez - team lead',
-  description: 'Hi! I\'m Maxi, a developer from Argentina, feel free reach out!',
+  title: 'Maxi Gimenez — Engineering Manager | Team Lead',
+  description: 'Engineering manager with 14+ years building high-performing teams and playful products.',
 })
 </script>
 
 <template>
-  <div className="container mx-auto max-w-screen-sm px-4 md:px-0">
-    <div class="mt-12">
-      <img class="rounded-full h-24 w-24 object-cover" src="/me.jpg" alt="Me in NYC early 2020" />
-
-      <h1 class="mt-5 mb-0 text-3xl">Hi!, I'm <strong>Maxi</strong> 🇦🇷 </h1>
-      <h2 class="m-0 mb-6 text-xl">Team Lead at <a href="https://checklyhq.com" title="Delightful Active Monitoring for Developers" target="_blank">ChecklyHQ</a></h2>
-
-      <div>
-        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">👨‍💻 Developer</span>
-        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">✈️ Traveler</span>
-        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">🚀 Maker</span>
-        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">👨‍🍳 Chef Enthusiast</span>
-        <span class="rounded-md bg-gray-200 mr-2 px-2 py-1">😻 Cat owner</span>
-      </div>
-
-      <p class="my-5">Over +14 years of experience in agile, high-performing engineering teams. Started as a full-stack developer, later specializing in frontend technologies. For the past 4 years, I’ve led cross-functional teams, driving delivery, collaboration, and technical excellence across complex projects.</p>
-      <p class="my-5">I enjoy going wild camping, watching Formula 1, playing Magic: The Gathering, and spending time with my cat. I also love working on side projects that blend my engineering passion with personal interests. For example, I built a platform to analyze Formula 1 data and generate insightful charts, combining tech and sports in a fun, meaningful way.</p>
-
-      <p class="my-5 text-gray-700">💬 Wanna talk? You can reach me on <a href="https://twitter.com/gmaxi_" title="Reach me out on X" target="_blank" className="underline">X</a>!</p>
+  <div class="desktop-shell">
+    <div class="absolute inset-0 pointer-events-none opacity-60">
+      <div class="grid-overlay absolute inset-0"></div>
     </div>
 
-    <div class="my-12">
-      <h2 class="text-2xl mb-8">
-        <span class="w-2 h-1 bg-green-400 inline-block mr-1"></span>
-        Blog
-      </h2>
+    <div class="flex">
+      <main class="mx-auto flex-1 px-4 py-10 sm:px-6 lg:px-10">
+        <div class="window max-w-6xl mx-auto">
+          <div class="window-toolbar">
+            <div class="flex items-center gap-2">
+              <button class="toolbar-btn">◀</button>
+              <button class="toolbar-btn">▶</button>
+              <button class="toolbar-btn">↻</button>
+            </div>
+            <div class="ml-3 flex items-center gap-2 text-xs">
+              <div class="prompt-path">open home.mdx</div>
+            </div>
+          </div>
 
-      <div
-        v-for="post in posts"
-        :key="post.id"
-        class="my-6"
-      >
-        <RouterLink :to="{ path: post.path }">
-          <h3 class="text-xl mb-2 cursor-pointer hover:text-green-400">{{ post.title }} <span class="text-gray-600 text-sm ml-1">{{ post.meta.date }}</span></h3>
-        </RouterLink>
-      </div>
+          <BookmarkLinks />
+
+          <div class="window-body space-y-10 pb-10">
+            <section class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div class="space-y-5">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="label-pill">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Let's chat!
+                  </span>
+                  <span class="label-pill">Engineering manager</span>
+                </div>
+                <div class="space-y-3">
+                  <h1 class="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+                    Maxi Gimenez
+                  </h1>
+                  <p class="text-base text-slate-700">
+                    I’m an engineering leader with a background as a full-stack and frontend engineer, and several years of experience leading cross-functional teams. I’ve built and grown high-performing teams through thoughtful hiring, clear expectations, and strong engineering culture, while staying hands-on with complex, production systems.
+                  </p>
+                  <p class="text-base text-slate-700">
+                    Outside of work, I enjoy wild camping, following Formula 1, playing Magic: The Gathering, and spending time with
+                    <span class="group relative inline-block">
+                      <span class="ml-1 underline decoration-emerald-400 text-emerald-400 decoration-1 underline-offset-2 cursor-default">
+                        my cat
+                      </span>
+                      <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-3 w-40 -translate-x-1/2 rounded-md border border-slate-300 bg-white p-1 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
+                        <img src="/annu.jpg" alt="Annu the cat" class="h-50 w-full rounded object-cover" />
+                      </span>
+                    </span>.
+                  </p>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                  <a href="mailto:gimenez.maxi@gmail.com" class="rounded border border-slate-900 bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition hover:-translate-y-0.5">
+                    Let's chat!
+                  </a>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="retro-panel p-4">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div class="h-8 w-8 rounded border border-emerald-500/40 bg-slate-800 flex items-center justify-center text-lg text-emerald-300">
+                        <Icon name="uil:rocket" size="1em" />
+                      </div>
+                      <div class="leading-2">
+                        <span class="text-sm font-semibold text-slate-900">Ongoing build</span><br/>
+                        <span class="text-xs text-slate-600">Weekend ship mode</span>
+                      </div>
+                    </div>
+                    <RouterLink :to="{ path: '/shipping' }" class="text-xs font-semibold">
+                      View →
+                    </RouterLink>
+                  </div>
+                  <div class="mt-3 text-sm text-slate-700">
+                    <p v-if="latestShippingEntry" class="font-semibold text-slate-900">
+                      {{ latestShippingEntry.title }}
+                    </p>
+                    <p v-if="latestShippingEntry" class="text-xs text-slate-600 leading-snug">
+                      {{ latestShippingSummary }}
+                    </p>
+                    <p v-else class="text-xs text-slate-600">
+                      no entries yet
+                    </p>
+                  </div>
+                </div>
+
+                <div class="retro-panel p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-[11px] uppercase tracking-[0.18em] text-slate-500">Current / Last role</p>
+                      <p class="text-lg font-semibold text-slate-900">
+                        Engineering Manager @ <a href="https://checklyhq.com" target="_blank">ChecklyHQ</a>
+                      </p>
+                    </div>
+                    <span class="rounded border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700">Remote</span>
+                  </div>
+                  <div class="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">Stack: Vue.js</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">Nuxt.js</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">TypeScript</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">Node.js</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">PostgreSQL</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">Vercel</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">AWS</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">Claude Code</span>
+                    <span class="rounded border border-slate-300 bg-white px-2 py-1">OpenAI Codex</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="projects" class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-600">Weekend builds</p>
+                  <h2 class="text-3xl font-semibold text-slate-900">Side projects</h2>
+                </div>
+                <p class="text-sm text-slate-600">Small bets, real users, plenty of learnings.</p>
+              </div>
+
+              <div class="grid gap-4 md:grid-cols-2">
+                <div v-for="project in sideProjects" :key="project.title" class="project-terminal">
+                  <div class="project-terminal-bar">
+                    <span class="project-terminal-title">$ code ./{{ project.slug }}</span>
+                  </div>
+                  <div class="project-terminal-body">
+                    <div class="flex items-center justify-between gap-3">
+                      <div class="flex items-center gap-2">
+                        <Icon :name="project.icon" size="1.1em" class="text-emerald-300" />
+                        <h3 class="text-lg font-semibold text-slate-100">{{ project.title }}</h3>
+                      </div>
+                      <span
+                        class="terminal-status"
+                        :class="{
+                          'terminal-status-live': project.tone === 'emerald',
+                          'terminal-status-exit': project.tone === 'rose',
+                          'terminal-status-active': project.tone === 'sky',
+                          'terminal-status-paused': project.tone === 'amber',
+                        }"
+                      >
+                        ✓ {{ project.status }}
+                      </span>
+                    </div>
+                    <p class="text-slate-300 text-sm">{{ project.description }}</p>
+                    <div class="mt-2 flex items-center justify-end text-sm text-slate-400">
+                      <a
+                        v-if="project.link"
+                        :href="project.link"
+                        target="_blank"
+                        class="terminal-link"
+                      >
+                        $ open {{ project.slug }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="blog" class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-slate-600">Writing</p>
+                  <h2 class="text-3xl font-semibold text-slate-900">Latest blog posts</h2>
+                </div>
+                <p class="text-sm text-slate-600">Product, engineering, and the occasional other bits.</p>
+              </div>
+
+              <div class="grid gap-4 md:grid-cols-2">
+                <NuxtLink
+                  v-for="post in posts || []"
+                  :key="post.id"
+                  :to="{ path: post.path }"
+                  class="retro-panel flex flex-col gap-2 p-5 transition hover:-translate-y-1 hover:border-slate-400 hover:shadow-lg"
+                >
+                  <p class="text-xs uppercase tracking-[0.15em] text-slate-500">{{ post.meta.date }}</p>
+                  <h3 class="text-xl font-semibold text-slate-900">{{ post.title }}</h3>
+                  <p class="text-sm text-slate-700 line-clamp-2">
+                    {{ post.description }}
+                  </p>
+                  <span class="text-sm font-semibold">Read post →</span>
+                </NuxtLink>
+              </div>
+            </section>
+
+            <Footer />
+          </div>
+        </div>
+      </main>
     </div>
-
-    <div class="my-12">
-      <h2 class="text-2xl mb-8">
-        <span class="w-2 h-1 bg-green-400 inline-block mr-1"></span>
-        Side Projects
-      </h2>
-
-      <div class="grid md:grid-cols-2 row-gap-10 grid-cols-1 gap-6">
-        <div>
-          <h3 class="text-xl mb-2">🏎️ Revora</h3>
-          <p class="mb-1">F1 insights for enthusiasts, engineers, and content creators.</p>
-          <a href="https://revora.app/" title="Revora" target="_blank" class="underline">Check project</a>
-        </div>
-        <div>
-          <h3 class="text-xl mb-2">📰 7Reads</h3>
-          <p class="mb-1">7Reads is a simple and mindful reading list extension for Google Chrome.</p>
-          <a href="https://7reads.now.sh/" title="7Reads" target="_blank" class="underline">Check project</a>
-        </div>
-        <div>
-          <h3 class="text-xl mb-2">🧡 Skuap.com <span class="text-xs text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
-          <p class="mb-1">Skuap is a platform designed for leaders to create high performing teams.</p>
-        </div>
-        <div>
-          <h3 class="text-xl mb-2">💎 SheetAPI.co <span class="text-xs text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
-          <p class="mb-1">SheetAPI enables you to turn Google Sheets into RESTful APIs.</p>
-        </div>
-        <div>
-          <h3 class="text-xl mb-2">📊 Updatefy.co <span class="text-xs text-white	bg-red-600 rounded-md py-1 px-2 uppercase">Exit</span></h3>
-          <p class="mb-1">Updatefy is a no-code platform that lets you embed Google Sheets into any webpage.</p>
-        </div>
-        <div>
-          <h3 class="text-xl mb-2">🤑 CurrencyMenu.com <span class="text-xs text-white bg-yellow-600 rounded-md py-1 px-2 uppercase">Unmaintained</span></h3>
-          <p class="mb-1">View live exchange rates right from your menu bar.</p>
-        </div>
-      </div>
-    </div>
-
-    <Footer />
   </div>
 </template>

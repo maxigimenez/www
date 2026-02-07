@@ -2,10 +2,16 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.9.0",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
@@ -17,5 +23,9 @@
     "tailwindcss": "4.1.8",
     "vue": "3.5.15",
     "vue-router": "4.5.1"
+  },
+  "devDependencies": {
+    "@checkly/playwright-reporter": "1.4.1",
+    "@playwright/test": "1.58.1"
   }
 }
