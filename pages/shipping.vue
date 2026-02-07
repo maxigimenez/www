@@ -62,7 +62,9 @@ useSeoMeta({
             >
               <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <p class="text-xs uppercase tracking-[0.14em] text-slate-500">{{ entry.date }}</p>
+                  <p class="text-xs uppercase tracking-[0.14em] text-slate-500">
+                    {{ entry.date }}<span v-if="entry.time"> · {{ entry.time }}</span>
+                  </p>
                   <h2 class="text-xl font-semibold text-slate-900">{{ entry.title }}</h2>
                   <a
                     v-if="entry.link"

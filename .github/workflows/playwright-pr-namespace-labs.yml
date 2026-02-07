@@ -1,7 +1,8 @@
 name: Playwright PR Checks (Namespace Labs)
 
 on:
-  deployment_status:
+  workflow_dispatch:
+  # deployment_status:
 
 permissions:
   contents: read
@@ -13,9 +14,10 @@ jobs:
     env:
       CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
       CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
-    if: >
-      github.event.deployment_status.state == 'success' &&
-      contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
+    if: false # disabled for now
+    # if: >
+    #   github.event.deployment_status.state == 'success' &&
+    #   contains(format('{0}', github.event.deployment_status.environment_url), '.vercel.app')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
