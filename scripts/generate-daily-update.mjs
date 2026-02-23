@@ -11,9 +11,13 @@ if (!GEMINI_API_KEY) {
 }
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-async function generateSummary() {
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function generateSummary(retryCount = 0) {
   const today = new Date().toISOString().split('T')[0];
   const outputDir = path.join(process.cwd(), 'content', 'updates');
   const outputFile = path.join(outputDir, `${today}.md`);
@@ -67,6 +71,12 @@ ${summary}
     fs.writeFileSync(outputFile, fileContent);
     console.log(`Generated daily update: ${outputFile}`);
   } catch (error) {
+    if (error.status === 429 && retryCount < 3) {
+      const waitTime = (error.errorDetails?.[0]?.retryDelay || 15) * 1000;
+      console.warn(`Rate limit hit. Retrying in ${waitTime/1000}s... (Attempt ${retryCount + 1}/3)`);
+      await sleep(waitTime);
+      return generateSummary(retryCount + 1);
+    }
     console.error("Error generating summary:", error);
     process.exit(1);
   }
