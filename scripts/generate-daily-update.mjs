@@ -10,8 +10,14 @@ if (!GEMINI_API_KEY) {
   process.exit(1);
 }
 
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!GEMINI_API_KEY) {
+  console.error("GEMINI_API_KEY is not set");
+  process.exit(1);
+}
+
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -29,7 +35,6 @@ async function generateSummary(retryCount = 0) {
   }
 
   // Get commits from today
-  // git log --since="today 00:00:00" --pretty=format:"%s"
   let commits;
   try {
     commits = execSync(`git log --since="${today} 00:00:00" --pretty=format:"- %s"`).toString().trim();
@@ -52,34 +57,49 @@ The output should be just the summary text in Markdown format (use bold for proj
 Commit messages:
 ${commits}`;
 
-  try {
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const summary = response.text().trim();
+  // Try different model variants in order of preference
+  const modelsToTry = ["gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-1.5-flash-8b"];
+  let lastError;
 
-    const fileContent = `---
+  for (const modelName of modelsToTry) {
+    try {
+      console.log(`Attempting to use model: ${modelName}`);
+      const model = genAI.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const summary = response.text().trim();
+
+      const fileContent = `---
 date: '${today}'
 tags: ['automated', 'daily-update']
 ---
 ${summary}
 `;
 
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
 
-    fs.writeFileSync(outputFile, fileContent);
-    console.log(`Generated daily update: ${outputFile}`);
-  } catch (error) {
-    if (error.status === 429 && retryCount < 3) {
-      const waitTime = (error.errorDetails?.[0]?.retryDelay || 15) * 1000;
-      console.warn(`Rate limit hit. Retrying in ${waitTime/1000}s... (Attempt ${retryCount + 1}/3)`);
-      await sleep(waitTime);
-      return generateSummary(retryCount + 1);
+      fs.writeFileSync(outputFile, fileContent);
+      console.log(`Generated daily update: ${outputFile} using ${modelName}`);
+      return; // Success!
+    } catch (error) {
+      lastError = error;
+      console.warn(`Model ${modelName} failed: ${error.message}`);
+      
+      // If it's a rate limit (429), we might want to wait and retry the same model
+      if (error.status === 429 && retryCount < 2) {
+        const waitTime = (error.errorDetails?.[0]?.retryDelay || 15) * 1000;
+        console.warn(`Rate limit hit on ${modelName}. Retrying in ${waitTime/1000}s...`);
+        await sleep(waitTime);
+        return generateSummary(retryCount + 1);
+      }
+      // If it's a 404, we just continue to the next model in the list
     }
-    console.error("Error generating summary:", error);
-    process.exit(1);
   }
+
+  console.error("All models failed. Last error:", lastError);
+  process.exit(1);
 }
 
 generateSummary();
