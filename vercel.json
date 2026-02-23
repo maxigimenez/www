@@ -1,4 +1,0 @@
-{
-  "installCommand": "npm ci --omit=dev",
-  "buildCommand": "npm run build"
-}

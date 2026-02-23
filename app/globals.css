@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 25% 97%;
+    --foreground: 220 15% 13%;
+
+    --card: 40 20% 95%;
+    --card-foreground: 220 15% 13%;
+
+    --popover: 40 25% 97%;
+    --popover-foreground: 220 15% 13%;
+
+    --primary: 152 30% 42%;
+    --primary-foreground: 40 25% 97%;
+
+    --secondary: 40 15% 92%;
+    --secondary-foreground: 220 15% 20%;
+
+    --muted: 40 12% 90%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 152 25% 90%;
+    --accent-foreground: 152 30% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 152 30% 42%;
+
+    --radius: 0.375rem;
+
+    --sidebar-background: 40 25% 97%;
+    --sidebar-foreground: 220 15% 13%;
+    --sidebar-primary: 152 30% 42%;
+    --sidebar-primary-foreground: 40 25% 97%;
+    --sidebar-accent: 40 15% 92%;
+    --sidebar-accent-foreground: 220 15% 20%;
+    --sidebar-border: 40 15% 88%;
+    --sidebar-ring: 152 30% 42%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 40 15% 90%;
+
+    --card: 220 15% 11%;
+    --card-foreground: 40 15% 90%;
+
+    --popover: 220 15% 8%;
+    --popover-foreground: 40 15% 90%;
+
+    --primary: 152 35% 50%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 12% 15%;
+    --secondary-foreground: 40 15% 85%;
+
+    --muted: 220 12% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 152 20% 15%;
+    --accent-foreground: 152 35% 65%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 12% 18%;
+    --input: 220 12% 18%;
+    --ring: 152 35% 50%;
+
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 40 15% 90%;
+    --sidebar-primary: 152 35% 50%;
+    --sidebar-primary-foreground: 220 15% 8%;
+    --sidebar-accent: 220 12% 15%;
+    --sidebar-accent-foreground: 40 15% 85%;
+    --sidebar-border: 220 12% 18%;
+    --sidebar-ring: 152 35% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-mono), monospace;
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    font-family: var(--font-mono), monospace;
+  }
+}
+
+@layer components {
+  .prose-custom {
+    font-family: var(--font-lora), Georgia, serif;
+    @apply text-foreground leading-relaxed;
+  }
+
+  .prose-custom h1,
+  .prose-custom h2,
+  .prose-custom h3 {
+    font-family: var(--font-mono), monospace;
+    @apply text-foreground font-semibold tracking-tight;
+  }
+
+  .prose-custom h1 { @apply text-2xl mb-6 mt-10; }
+  .prose-custom h2 { @apply text-xl mb-4 mt-8; }
+  .prose-custom h3 { @apply text-lg mb-3 mt-6; }
+
+  .prose-custom p {
+    @apply mb-4 text-base leading-7;
+  }
+
+  .prose-custom a {
+    @apply text-primary underline underline-offset-2 decoration-primary/40 hover:decoration-primary transition-colors;
+  }
+
+  .prose-custom ul, .prose-custom ol {
+    @apply mb-4 pl-6;
+  }
+
+  .prose-custom li {
+    @apply mb-1;
+  }
+
+  .prose-custom blockquote {
+    @apply border-l-2 border-primary/30 pl-4 italic text-muted-foreground my-4;
+  }
+
+  .prose-custom pre {
+    @apply bg-card border border-border rounded-md p-4 overflow-x-auto my-6 text-sm;
+  }
+
+  .prose-custom code {
+    @apply bg-card border border-border rounded px-1.5 py-0.5 text-sm;
+  }
+
+  .prose-custom pre code {
+    @apply bg-transparent border-0 p-0 rounded-none;
+  }
+
+  .prose-custom img {
+    @apply rounded-md my-6;
+  }
+
+  .prose-custom hr {
+    @apply border-border my-8;
+  }
+}
