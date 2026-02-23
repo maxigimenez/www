@@ -27,25 +27,34 @@ async function generateSummary(retryCount = 0) {
     return;
   }
 
-  // Get commits from today
+  // Get project names for context
+  const projectsDir = path.join(process.cwd(), 'content', 'projects');
+  const projectNames = fs.readdirSync(projectsDir)
+    .filter(file => file.endsWith('.md'))
+    .map(file => file.replace('.md', ''));
+
+  // Get commits from today that include #bip
   let commits;
   try {
-    commits = execSync(`git log --since="${today} 00:00:00" --pretty=format:"- %s"`).toString().trim();
+    commits = execSync(`git log --since="${today} 00:00:00" --grep="#bip" --pretty=format:"- %s"`).toString().trim();
   } catch (error) {
     console.error("Error fetching commits:", error);
     process.exit(1);
   }
 
   if (!commits) {
-    console.log("No commits found for today.");
+    console.log("No #bip commits found for today. Skipping update.");
     return;
   }
 
-  const prompt = `You are a professional software engineer. I will give you a list of my git commit messages from today. 
-Summarize them into a single, concise paragraph (2-3 sentences max) for my "Engineering Log" timeline. 
-Use a professional yet personal tone. 
-Focus on what was achieved or improved. 
-The output should be just the summary text in Markdown format (use bold for project names or key features if applicable).
+  const prompt = `You are a professional software engineer building in public. I will give you a list of my git commit messages from today that are tagged with #bip (build in public). 
+Summarize them into a single, concise paragraph (2-3 sentences max) for my "Engineering Log" timeline.
+
+Context:
+- Projects I am working on: ${projectNames.join(', ')}
+- Goal: Create a professional, engaging "Build in Public" update.
+- Tone: Professional, personal, and momentum-focused.
+- Formatting: Use bold for project names and key features. Return ONLY the markdown text.
 
 Commit messages:
 ${commits}`;
