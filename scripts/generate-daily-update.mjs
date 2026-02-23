@@ -50,8 +50,13 @@ The output should be just the summary text in Markdown format (use bold for proj
 Commit messages:
 ${commits}`;
 
-  // Try different model variants in order of preference
-  const modelsToTry = ["gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-1.5-flash-8b"];
+  // Try different model variants in order of preference from the verified list
+  const modelsToTry = [
+    "gemini-2.5-flash",
+    "gemini-flash-latest",
+    "gemini-2.0-flash-lite",
+    "gemini-2.0-flash"
+  ];
   let lastError;
 
   for (const modelName of modelsToTry) {
@@ -80,14 +85,13 @@ ${summary}
       lastError = error;
       console.warn(`Model ${modelName} failed: ${error.message}`);
       
-      // If it's a rate limit (429), we might want to wait and retry the same model
-      if (error.status === 429 && retryCount < 2) {
-        const waitTime = (error.errorDetails?.[0]?.retryDelay || 15) * 1000;
-        console.warn(`Rate limit hit on ${modelName}. Retrying in ${waitTime/1000}s...`);
+      // If it's a rate limit (429), we wait and retry
+      if (error.status === 429 && retryCount < 3) {
+        const waitTime = 30000; 
+        console.warn(`Quota/Rate limit hit on ${modelName}. Retrying in ${waitTime/1000}s... (Attempt ${retryCount + 1}/3)`);
         await sleep(waitTime);
         return generateSummary(retryCount + 1);
       }
-      // If it's a 404, we just continue to the next model in the list
     }
   }
 
