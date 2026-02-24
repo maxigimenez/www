@@ -23,14 +23,16 @@ export default async function ProjectsPage() {
           <article key={project.slug} className="group">
             <div className="flex items-baseline justify-between gap-4 mb-1">
               <h2 className="text-base font-mono font-medium">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors"
-                >
-                  {project.title}
-                </a>
+                {project.link ?
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    {project.title}
+                  </a>
+                  : project.title}
               </h2>
               <span className={`font-mono text-xs ${statusColors[project.status]}`}>
                 {project.status}

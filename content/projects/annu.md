@@ -1,6 +1,6 @@
 ---
 title: 'annu'
-description: 'A local-first app for tracking Magic: The Gathering game stats, deck win rates, and matchup history. Because spreadsheets weren''t cutting it.'
+description: 'AI modular co-pilot assistant to optimize and speed up daily and recurring tasks..'
 techStack: ['Nuxt', 'TypeScript', 'Supabase', 'Postgres', 'OpenAI']
 status: 'active'
 link: 'https://annu.dev'
