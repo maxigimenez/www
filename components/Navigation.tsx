@@ -2,9 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
-import { Moon, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'home' },
@@ -15,13 +12,6 @@ const navLinks = [
 
 export function Navigation() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <header className="border-b border-border">
@@ -43,16 +33,6 @@ export function Navigation() {
               {link.label}
             </Link>
           ))}
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Toggle theme"
-            >
-              <Sun className="h-4 w-4 hidden dark:block" />
-              <Moon className="h-4 w-4 block dark:hidden" />
-            </button>
-          )}
         </nav>
       </div>
     </header>
