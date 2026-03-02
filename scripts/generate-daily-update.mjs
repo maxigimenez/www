@@ -4,6 +4,12 @@ import fs from "fs";
 import path from "path";
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const TRACKED_REPOS_TOKEN = process.env.TRACKED_REPOS_TOKEN;
+const TRACKED_REPOS = [
+  { repo: "maxigimenez/www", label: "personal page" },
+  { repo: "maxigimenez/annu.dev", label: "annu.dev" },
+  { repo: "maxigimenez/taplands", label: "taplands" },
+];
 
 if (!GEMINI_API_KEY) {
   console.error("GEMINI_API_KEY is not set");
@@ -14,6 +20,129 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getUtcDayBounds(dateString) {
+  return {
+    sinceDateTime: `${dateString}T00:00:00Z`,
+    untilDateTime: `${dateString}T23:59:59Z`
+  };
+}
+
+function normalizeCommitLine(repo, message) {
+  const firstLine = (message || "").split("\n")[0].trim();
+  if (!firstLine) {
+    return null;
+  }
+  return `- [${repo}] ${firstLine}`;
+}
+
+function getLocalRepoName() {
+  try {
+    const remoteUrl = execSync("git config --get remote.origin.url").toString().trim();
+    const match = remoteUrl.match(/[:/]([^/]+\/[^/.]+)(?:\.git)?$/);
+    if (match && match[1]) {
+      return match[1];
+    }
+  } catch {
+    // Fall back to current directory name below.
+  }
+  return path.basename(process.cwd());
+}
+
+function getLocalBipCommitsForDay(dateString) {
+  try {
+    const raw = execSync(`git log --since="${dateString} 00:00:00" --pretty=format:"%s"`).toString().trim();
+    if (!raw) {
+      return [];
+    }
+    const repoName = getLocalRepoName();
+    return raw
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line.toLowerCase().includes("#bip"))
+      .map(line => normalizeCommitLine(repoName, line))
+      .filter(Boolean);
+  } catch (error) {
+    console.error("Error fetching local commits:", error);
+    process.exit(1);
+  }
+}
+
+async function fetchRepoCommits(repo, displayName, token, sinceDateTime, untilDateTime) {
+  const allCommits = [];
+  let page = 1;
+
+  while (true) {
+    const url = new URL(`https://api.github.com/repos/${repo}/commits`);
+    url.searchParams.set("since", sinceDateTime);
+    url.searchParams.set("until", untilDateTime);
+    url.searchParams.set("per_page", "100");
+    url.searchParams.set("page", String(page));
+
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "User-Agent": "daily-timeline-update-script",
+        "X-GitHub-Api-Version": "2022-11-28"
+      }
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`Failed to fetch commits for ${repo} (${response.status}): ${body}`);
+    }
+
+    const pageCommits = await response.json();
+    if (!Array.isArray(pageCommits) || pageCommits.length === 0) {
+      break;
+    }
+
+    allCommits.push(...pageCommits);
+    if (pageCommits.length < 100) {
+      break;
+    }
+    page += 1;
+  }
+
+  return allCommits
+    .map(commit => commit?.commit?.message || "")
+    .filter(message => message.toLowerCase().includes("#bip"))
+    .map(message => normalizeCommitLine(displayName, message))
+    .filter(Boolean);
+}
+
+async function getTrackedRepoBipCommitsForDay(dateString) {
+  if (TRACKED_REPOS.length === 0) {
+    return [];
+  }
+
+  if (!TRACKED_REPOS_TOKEN) {
+    console.warn("TRACKED_REPOS_TOKEN is missing. Skipping tracked repos.");
+    return [];
+  }
+
+  const { sinceDateTime, untilDateTime } = getUtcDayBounds(dateString);
+  const commitsByRepo = await Promise.all(
+    TRACKED_REPOS.map(async trackedRepo => {
+      try {
+        const commits = await fetchRepoCommits(
+          trackedRepo.repo,
+          trackedRepo.label || trackedRepo.repo,
+          TRACKED_REPOS_TOKEN,
+          sinceDateTime,
+          untilDateTime
+        );
+        return commits;
+      } catch (error) {
+        console.warn(`Unable to fetch commits from ${trackedRepo.repo}: ${error.message}`);
+        return [];
+      }
+    })
+  );
+
+  return commitsByRepo.flat();
 }
 
 async function generateSummary(retryCount = 0) {
@@ -33,14 +162,10 @@ async function generateSummary(retryCount = 0) {
     .filter(file => file.endsWith('.md'))
     .map(file => file.replace('.md', ''));
 
-  // Get commits from today that include #bip
-  let commits;
-  try {
-    commits = execSync(`git log --since="${today} 00:00:00" --grep="#bip" --pretty=format:"- %s"`).toString().trim();
-  } catch (error) {
-    console.error("Error fetching commits:", error);
-    process.exit(1);
-  }
+  const localCommits = getLocalBipCommitsForDay(today);
+  const trackedRepoCommits = await getTrackedRepoBipCommitsForDay(today);
+  const allCommits = [...localCommits, ...trackedRepoCommits];
+  const commits = allCommits.join("\n");
 
   if (!commits) {
     console.log("No #bip commits found for today. Skipping update.");

@@ -30,6 +30,7 @@ jobs:
       - name: Generate Summary
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TRACKED_REPOS_TOKEN: ${{ secrets.TRACKED_REPOS_TOKEN }}
         run: node scripts/generate-daily-update.mjs
 
       - name: Commit and Push
