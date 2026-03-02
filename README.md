@@ -1,4 +1,4 @@
-# Maxi's Engineering Log 🚀
+# Engineering Log 🚀
 
 Hola 👋! I'm **Maxi**, an engineering manager from 🇦🇷 living in 🇮🇪. This project is my personal portfolio, blog, and development timeline, built with Next.js and automated with AI.
 
