@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Index() {
   return (
-    <div className="max-w-lg">
+    <div>
       <h1 className="text-2xl mb-6 font-semibold">Maxi Gimenez</h1>
       <p className="font-serif text-lg leading-relaxed text-foreground mb-4">
         I build tools, lead teams, and write about the craft of software engineering.
