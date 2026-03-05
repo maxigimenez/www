@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Lora } from "next/font/google";
 import "@/app/globals.css";
-import { Providers } from "@/components/Providers";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
@@ -33,19 +32,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <body className={`${inter.variable} ${jetbrainsMono.variable} ${lora.variable} font-sans antialiased`}>
-        <Providers>
-          <div className="min-h-screen flex flex-col">
-            <Navigation />
-            <main className="flex-1">
-              <div className="container py-12 md:py-16">
-                {children}
-              </div>
-            </main>
-            <Footer />
-          </div>
-        </Providers>
+        <div className="min-h-screen flex flex-col">
+          <Navigation />
+          <main className="flex-1">
+            <div className="container py-12 md:py-16">
+              {children}
+            </div>
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
