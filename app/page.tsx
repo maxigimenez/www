@@ -15,19 +15,19 @@ export default function Index() {
       <div className="flex flex-col gap-3">
         <Link
           href="/projects"
-          className="font-mono text-sm text-primary hover:text-foreground transition-colors inline-flex items-center gap-2 group"
+          className="font-mono text-sm text-primary hover:text-primary-hover active:text-primary-active transition-colors inline-flex items-center gap-2 group"
         >
           → side projects
         </Link>
         <Link
           href="/blog"
-          className="font-mono text-sm text-primary hover:text-foreground transition-colors inline-flex items-center gap-2 group"
+          className="font-mono text-sm text-primary hover:text-primary-hover active:text-primary-active transition-colors inline-flex items-center gap-2 group"
         >
           → blog
         </Link>
         <Link
           href="/timeline"
-          className="font-mono text-sm text-primary hover:text-foreground transition-colors inline-flex items-center gap-2 group"
+          className="font-mono text-sm text-primary hover:text-primary-hover active:text-primary-active transition-colors inline-flex items-center gap-2 group"
         >
           → timeline
         </Link>
@@ -38,7 +38,7 @@ export default function Index() {
           Like building things or want to talk tech?{' '}
           <a
             href="mailto:gimenez.maxi@gmail.com"
-            className="text-primary hover:text-foreground transition-colors underline underline-offset-2 decoration-primary/40"
+            className="text-primary hover:text-primary-hover active:text-primary-active transition-colors underline underline-offset-2 decoration-primary/40 hover:decoration-primary-hover active:decoration-primary-active"
           >
             Let's grab a coffee
           </a>

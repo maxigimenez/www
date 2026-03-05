@@ -13,7 +13,9 @@
     --popover: 220 15% 8%;
     --popover-foreground: 40 15% 90%;
 
-    --primary: 152 35% 50%;
+    --primary: 114 100% 54%;
+    --primary-hover: 114 100% 62%;
+    --primary-active: 114 100% 46%;
     --primary-foreground: 220 15% 8%;
 
     --secondary: 220 12% 15%;
@@ -22,26 +24,26 @@
     --muted: 220 12% 18%;
     --muted-foreground: 220 10% 55%;
 
-    --accent: 152 20% 15%;
-    --accent-foreground: 152 35% 65%;
+    --accent: 114 38% 17%;
+    --accent-foreground: 114 95% 74%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 220 12% 18%;
     --input: 220 12% 18%;
-    --ring: 152 35% 50%;
+    --ring: 114 100% 54%;
 
     --radius: 0.375rem;
 
     --sidebar-background: 220 15% 8%;
     --sidebar-foreground: 40 15% 90%;
-    --sidebar-primary: 152 35% 50%;
+    --sidebar-primary: 114 100% 54%;
     --sidebar-primary-foreground: 220 15% 8%;
-    --sidebar-accent: 220 12% 15%;
-    --sidebar-accent-foreground: 40 15% 85%;
+    --sidebar-accent: 114 38% 17%;
+    --sidebar-accent-foreground: 114 95% 74%;
     --sidebar-border: 220 12% 18%;
-    --sidebar-ring: 152 35% 50%;
+    --sidebar-ring: 114 100% 54%;
   }
 }
 
@@ -87,7 +89,7 @@
   }
 
   .prose-custom a {
-    @apply text-primary underline underline-offset-2 decoration-primary/40 hover:decoration-primary transition-colors;
+    @apply text-primary underline underline-offset-2 decoration-primary/40 hover:text-primary-hover hover:decoration-primary-hover active:text-primary-active active:decoration-primary-active transition-colors;
   }
 
   .prose-custom ul, .prose-custom ol {

@@ -16,7 +16,7 @@ export function Navigation() {
   return (
     <header className="border-b border-border">
       <div className="container py-5 flex items-center justify-between">
-        <Link href="/" className="hidden lg:block font-mono text-sm font-semibold text-foreground hover:text-primary transition-colors">
+        <Link href="/" className="hidden lg:block font-mono text-sm font-semibold text-foreground hover:text-primary-hover active:text-primary-active transition-colors">
           maxi gimenez
         </Link>
         <nav className="flex items-center gap-6">
