@@ -9,7 +9,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="font-mono text-sm text-primary hover:text-foreground transition-colors"
+        className="font-mono text-sm text-primary hover:text-primary-hover active:text-primary-active transition-colors"
       >
         ← back to reality
       </Link>

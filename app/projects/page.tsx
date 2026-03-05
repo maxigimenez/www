@@ -28,7 +28,7 @@ export default async function ProjectsPage() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors"
+                    className="hover:text-primary-hover active:text-primary-active transition-colors"
                   >
                     {project.title}
                   </a>
