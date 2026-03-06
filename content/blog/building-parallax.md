@@ -16,9 +16,9 @@ So I started building **Parallax**.
 
 My side projects usually die in one of these states:
 
-1. Too many open tickets, not enough momentum.
-2. I ask AI to “just do it,” and it either does too much or asks too many questions too late.
-3. PR feedback loops drag forever because comments are noisy and hard to action.
+1. Too many ideas, not enough time.  
+2. I ask AI to “just do it,” and it either does too much or does the wrong thing.  
+3. No PR feedback, just merge to main, great for quick iteration, but not great for code quality.  
 
 I wanted a system that helps me work in tight cycles:
 
@@ -26,8 +26,6 @@ I wanted a system that helps me work in tight cycles:
 - **Code**
 - **Review**
 - Repeat
-
-Not chaos. Not magic. Just fast, reliable iteration.
 
 ## What Parallax is
 
@@ -70,7 +68,7 @@ My flow now looks like this:
 - Edit and approve plan.
 - Watch execution logs and file diffs.
 - Let PR open.
-- If review comments come in, explicitly trigger follow-up work.
+- Review the PR, request adjustments, and then explicitly trigger follow-up work.
 
 That last part matters: I tightened review triggers so random bot comments don’t kick off agent runs. I only want intentional loops.
 
@@ -89,7 +87,7 @@ I don’t need perfect autonomy. I need dependable forward motion on side projec
 
 ## What I’m excited about next
 
-I’m still early, but this already feels different from other tooling experiments. It’s finally matching how I want to work: tight loops, clear control points, and visible progress.
+Still in the early stages, but it's shaping up how I want to work: tight loops, clear control points, and visible progress.
 
 Next, I want to keep improving:
 
